@@ -34,7 +34,7 @@ LightingScene.prototype.init = function(application) {
 	this.wall = new MyQuad(this, -0.5, 1.5, -0.5, 1.5);
 	this.floor = new MyQuad(this, 0,10,0,12);
 	this.clock = new MyClock(this);
-	//this.hand = new MyClockHand(this, 0, 20, 0.1);
+	//this.hand = new MyClockHand(this, 90, 5, 0.1); //DEBUG
 
 	
 	this.boardA = new Plane(this, BOARD_A_DIVISIONS);
@@ -226,7 +226,13 @@ LightingScene.prototype.display = function() {
 		this.clock.display();
 	this.popMatrix();
 
-	//this.hand.display();
+	//this.hand.display(); //DEBUG
 
 	// ---- END Primitive drawing section
+
+	this.setUpdatePeriod(100); //100 ms Period
+};
+
+LightingScene.prototype.update = function(currTime) {
+	this.clock.update(currTime);
 };

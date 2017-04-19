@@ -1,5 +1,3 @@
- 
- 
 /**
  * MyClockDisplay
  * @constructor

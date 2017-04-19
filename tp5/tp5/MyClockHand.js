@@ -11,15 +11,20 @@
  };
 
  MyClockHand.prototype.display = function() {
-   this.scene.pushMatrix();
+    this.scene.pushMatrix();
    this.scene.rotate(-this.angle*Math.PI/180 + Math.PI/2, 0, 0, 1);
+   this.scene.translate(0, -(this.scaleY*0.5)/2, 0);
    this.scene.translate(this.scaleX*0.5, this.scaleY*0.5, 0);
    this.scene.scale(this.scaleX, this.scaleY, 1.2);
    this.scene.translate(-0.5, -0.5, 0);
    this.hand.display();
-     this.scene.popMatrix();
+   this.scene.popMatrix();
 };
 
  MyClockHand.prototype.setAngle = function(angle) {
     this.angle = angle;
- }; 
+ };
+
+ MyClockHand.prototype.addAngle = function(angle) {
+    this.angle =  (this.angle + angle) % 360;
+ };  
