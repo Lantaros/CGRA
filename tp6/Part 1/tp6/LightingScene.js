@@ -33,11 +33,13 @@ LightingScene.prototype.init = function(application) {
 	this.wall = new MyQuad(this, -0.5, 1.5, -0.5, 1.5);
 	
 	this.floor = new MyQuad(this, 0,2, 0, 2);
+	this.post = new MyCylinder(this,40,2);
 	this.clock = new MyClock(this);
+
 	this.submarine = new MySubmarine(this);
 	
-	this.boardA = new Plane(this, BOARD_A_DIVISIONS);
-	this.boardB = new Plane(this, BOARD_B_DIVISIONS);
+	//this.boardA = new Plane(this, BOARD_A_DIVISIONS);
+	//this.boardB = new Plane(this, BOARD_B_DIVISIONS);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -156,6 +158,8 @@ LightingScene.prototype.display = function() {
 		this.floor.display();
 	this.popMatrix();
 
+	
+	
 /*	// Left Wall
 	this.pushMatrix();
 	this.translate(0, 4, 7.5);
@@ -204,14 +208,24 @@ LightingScene.prototype.display = function() {
 		this.boardB.display();
 	this.popMatrix();*/
 
+	// Post
+	this.pushMatrix();
+		this.translate(8,0,0.1);	
+		this.scale(0.1, 4, 0.1);
+		this.rotate(-90 * degToRad, 1, 0, 0);
+		this.post.display();
+	this.popMatrix();
+
 	//Clock
 	this.pushMatrix();
-		this.translate(7.50, 7, 0.2);
+		this.translate(8, 5, 0);
 		this.clock.display();
 	this.popMatrix();
 
+	//submarine
 	this.pushMatrix();
-		this.translate(5, 2, 5);
+		this.translate(8.1, 4, 7);
+		this.rotate(180 * degToRad, 0, 1, 0);
 		this.submarine.display();
 	this.popMatrix();
 
