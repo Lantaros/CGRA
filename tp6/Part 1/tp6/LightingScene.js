@@ -243,3 +243,19 @@ LightingScene.prototype.update = function(currTime) {
 LightingScene.prototype.doSomething = function (){ 
 	console.log("Doing something..."); 
 };
+
+//for submarine
+LightingScene.prototype.subLeft = function (){
+	this.pushMatrix();
+		this.submarine.goLeft();
+		this.submarine.display();
+	this.popMatrix();
+};
+
+LightingScene.prototype.subRight = function (){
+	this.pushMatrix();
+		this.submarine.goRight();
+		this.submarine.display();
+	this.popMatrix();
+};
+

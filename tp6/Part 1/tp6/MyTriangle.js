@@ -25,11 +25,7 @@ MyTriangle.prototype.constructor=MyTriangle;
     this.normals.push(0,1,0);
 
     this.indices.push(0, 1, 2);
-    
-    console.log("indices: " + this.indices.length + "  " + this.indices + "\n");
-    console.log("vertices: " + this.vertices.length + "  " + this.vertices + "\n");
-    
-    
+       
     this.primitiveType=this.scene.gl.TRIANGLES;
     this.initGLBuffers();
 };
