@@ -67,13 +67,21 @@ MyInterface.prototype.processKeyboard = function(event) {
 	// for better cross-browser support, you may also check suggestions on using event.which in http://www.w3schools.com/jsref/event_key_keycode.asp
 	switch (event.keyCode)
 	{
-		case (97):{
+		case (97):{ //'a'
 			this.scene.subLeft();
 			break;
 		}
-		case(100):{
+		case(100):{//'d'
 			this.scene.subRight();
 			break;			
+		}
+		case(119):{//'w'
+			this.scene.subForw();
+			break;
+		}
+		case(115):{//'s'
+			this.scene.subBack();			
+			break;
 		}
 	};
 };

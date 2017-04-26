@@ -224,10 +224,12 @@ LightingScene.prototype.display = function() {
 
 	//submarine
 	this.pushMatrix();
-		this.translate(8.1, 4, 7);
-		this.rotate(180 * degToRad, 0, 1, 0);
+		//this.translate(8.1, 4, 7);
 		this.submarine.display();
 	this.popMatrix();
+
+// 	this.triang = new MyTriangleSub(this); DEBUG
+// 	this.triang.display();
 
 
 	// ---- END Primitive drawing section
@@ -255,6 +257,20 @@ LightingScene.prototype.subLeft = function (){
 LightingScene.prototype.subRight = function (){
 	this.pushMatrix();
 		this.submarine.goRight();
+		this.submarine.display();
+	this.popMatrix();
+};
+
+LightingScene.prototype.subForw = function (){
+	this.pushMatrix();
+		this.submarine.goForw();
+		this.submarine.display();
+	this.popMatrix();
+};
+
+LightingScene.prototype.subBack = function (){
+	this.pushMatrix();
+		this.submarine.goBack();
 		this.submarine.display();
 	this.popMatrix();
 };
