@@ -65,9 +65,13 @@ LightingScene.prototype.init = function(application) {
     this.white =  new CGFappearance(this);
 
     //for submarine
-    this.option1=true; 
-    this.option2=false; 
-    this.speed=3
+    this.light1=true; 
+    this.light2=true; 
+    this.light3=true;
+    this.light4=true;
+    this.speed=3;
+
+    this.valid = true;
 };
 
 LightingScene.prototype.initCameras = function() {
@@ -80,12 +84,14 @@ LightingScene.prototype.initLights = function() {
 
 	// Positions for four lights
 	this.lights[0].setPosition(4, 6, 1, 1);
-	this.lights[0].setVisible(true); // show marker on light position (different from enabled)	
+	this.lights[0].setVisible(true); // show marker on light position (different from enabled)		
+	this.lights[0].setAmbient(0, 0, 0, 1);
+	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
 	
 	this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
 	this.lights[1].setVisible(true); // show marker on light position (different from enabled)
-	//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
-
+	this.lights[1].setAmbient(0, 0, 0, 1);
+	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
 
 	this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
 	this.lights[2].setSpecular(1,1,1,1);
@@ -93,31 +99,61 @@ LightingScene.prototype.initLights = function() {
 	this.lights[2].setLinearAttenuation(1) //Ki = 1
 	this.lights[2].setQuadraticAttenuation(0) //Kq = 0
 	this.lights[2].setVisible(true); 
-	this.lights[2].enable();
-
 
 	this.lights[3].setPosition(4, 6.0, 5.0, 1.0);
 	this.lights[3].setVisible(true);
 	this.lights[3].setConstantAttenuation(0) //Kc = 0
 	this.lights[3].setLinearAttenuation(0) //Ki = 0
 	this.lights[3].setQuadraticAttenuation(0.2) //Kq = 0.2
-	this.lights[3].enable();
-
-	this.lights[0].setAmbient(0, 0, 0, 1);
-	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[0].enable();
-
-	this.lights[1].setAmbient(0, 0, 0, 1);
-	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[1].enable();
 
 
 };
 
 LightingScene.prototype.updateLights = function() {
-	for (i = 0; i < this.lights.length; i++)
-		this.lights[i].update();
-}
+	for (i = 0; i < this.lights.length; i++)	
+			this.lights[i].update();
+
+	if (this.light1)
+		this.lights[0].enable();
+	else
+		this.lights[0].disable();
+		
+	if (!this.light1)
+		this.lights[0].disable();
+	else
+		this.lights[0].enable();
+
+	if (this.light2)
+		this.lights[1].enable();
+	else
+		this.lights[1].disable();
+
+	if (!this.light2)
+		this.lights[1].disable();
+	else
+		this.lights[1].enable();
+	
+	if (this.light3)
+		this.lights[2].enable();
+	else
+		this.lights[2].disable();
+
+	if (!this.light3)
+		this.lights[2].disable();
+	else
+		this.lights[2].enable();
+			
+	if (this.light4)
+		this.lights[3].enable();
+	else
+		this.lights[3].disable();
+		
+	if (!this.light4)
+		this.lights[3].disable();
+	else
+		this.lights[3].enable();			
+};
+
 
 
 LightingScene.prototype.display = function() {
@@ -224,7 +260,7 @@ LightingScene.prototype.display = function() {
 
 	//submarine
 	this.pushMatrix();
-		//this.translate(8.1, 4, 7);
+		this.translate(8.1, 4, 7);
 		this.submarine.display();
 	this.popMatrix();
 
@@ -237,13 +273,24 @@ LightingScene.prototype.display = function() {
 	this.setUpdatePeriod(100); //100 ms Period
 };
 
-LightingScene.prototype.update = function(currTime) {
-	this.clock.update(currTime);
+LightingScene.prototype.update = function(currTime, valid) {
+	if (this.valid)
+		this.clock.update(currTime);
 };
 
 //for submarine
-LightingScene.prototype.doSomething = function (){ 
-	console.log("Doing something..."); 
+LightingScene.prototype.doSomething = function (){
+	console.log("Doing something...");
+};
+LightingScene.prototype.clockHandler = function (){ 	
+	if (this.valid)
+		this.valid = false;
+	else
+		this.valid = true; 
+};
+
+LightingScene.prototype.lights = function (){ 
+	console.log("light 1."); 
 };
 
 //for submarine
