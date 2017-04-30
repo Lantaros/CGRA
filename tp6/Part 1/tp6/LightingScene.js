@@ -33,7 +33,7 @@ LightingScene.prototype.init = function(application) {
 	this.wall = new MyQuad(this, -0.5, 1.5, -0.5, 1.5);
 	
 	this.floor = new MyQuad(this, 0,2, 0, 2);
-	this.post = new MyCylinder(this,40,2);
+	this.post = new MyCylinder(this,40, 2);
 	this.clock = new MyClock(this);
 
 	this.submarine = new MySubmarine(this);
@@ -196,14 +196,13 @@ LightingScene.prototype.display = function() {
 
 	
 	
-/*	// Left Wall
+	/*// Left Wall
 	this.pushMatrix();
-	this.translate(0, 4, 7.5);
-	this.rotate(90 * degToRad, 0, 1, 0);
-	this.scale(15, 8, 0.2);
+		this.translate(0, 4, 7.5);
+		this.rotate(90 * degToRad, 0, 1, 0);
+		this.scale(15, 8, 0.2);
 		this.windowAppearance.apply();
-
-	this.wall.display();	
+		this.wall.display();	
 	this.popMatrix();
 
 	// Plane Wall
@@ -258,7 +257,7 @@ LightingScene.prototype.display = function() {
 		this.clock.display();
 	this.popMatrix();
 
-	//submarine
+	//Submarine
 	this.pushMatrix();
 		this.translate(8.1, 4, 7);
 		this.submarine.display();
@@ -266,7 +265,10 @@ LightingScene.prototype.display = function() {
 
 // 	this.triang = new MyTriangleSub(this); DEBUG
 // 	this.triang.display();
-
+		this.pushMatrix();
+	this.floorAppearance.apply();
+	this.post.display();
+	this.popMatrix();
 
 	// ---- END Primitive drawing section
 
@@ -278,22 +280,23 @@ LightingScene.prototype.update = function(currTime, valid) {
 		this.clock.update(currTime);
 };
 
-//for submarine
+/*GUI related functions*/
 LightingScene.prototype.doSomething = function (){
 	console.log("Doing something...");
 };
 LightingScene.prototype.clockHandler = function (){ 	
-	if (this.valid)
+	/*if (this.valid)
 		this.valid = false;
 	else
-		this.valid = true; 
+		this.valid = true; */  //A tad bit better
+		this.valid != !this.valid;
 };
 
 LightingScene.prototype.lights = function (){ 
 	console.log("light 1."); 
 };
 
-//for submarine
+/*Submarine related functions*/
 LightingScene.prototype.subLeft = function (){
 	this.pushMatrix();
 		this.submarine.goLeft();

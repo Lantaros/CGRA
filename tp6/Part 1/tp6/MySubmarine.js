@@ -4,8 +4,11 @@
  */
 function MySubmarine(scene) {
     CGFobject.call(this, scene);
-
+    
+    this.bodyCylinder = new MyCylinder(scene, 40, 4);
     this.sub = new MyTriangleSub(scene);
+    
+    //Coordinates
     this.angle = Math.PI/2;
     this.x = 0;
     this.z = 0;
@@ -13,12 +16,16 @@ function MySubmarine(scene) {
 };
 
 MySubmarine.prototype.display = function() {
-
-    this.scene.pushMatrix();
+ 
+    /*this.scene.pushMatrix();
     this.scene.translate(this.x, 0, this.z);
     this.scene.rotate(this.angle + Math.PI/2, 0, 1, 0);
     this.sub.display();
-    this.scene.popMatrix();
+    this.scene.popMatrix();*/
+
+//     this.scene.pushMatrix();
+//     this.bodyCylinder.display();
+//     this.scene.popMatrix();
  }
 ;
 MySubmarine.prototype.goLeft = function() {
