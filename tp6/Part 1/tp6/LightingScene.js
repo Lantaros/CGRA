@@ -35,6 +35,8 @@ LightingScene.prototype.init = function(application) {
 	this.floor = new MyQuad(this, 0,2, 0, 2);
 	this.post = new MyCylinder(this,40, 2);
 	this.clock = new MyClock(this);
+	this.trap = new MyTrapezoid(this);
+	this.lamp = new MyLamp(this, 40, 10);
 
 	this.submarine = new MySubmarine(this);
 	
@@ -61,6 +63,9 @@ LightingScene.prototype.init = function(application) {
     this.displayAppearance = new CGFappearance(this);
 	this.displayAppearance.loadTexture("../resources/images/clock.png");
 	this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+	this.subAppearance = new CGFappearance(this);
+	this.subAppearance.loadTexture("../resources/images/HexagonalGrid.png");
 	
     this.white =  new CGFappearance(this);
 
@@ -248,6 +253,7 @@ LightingScene.prototype.display = function() {
 		this.translate(8,0,0.1);	
 		this.scale(0.1, 4, 0.1);
 		this.rotate(-90 * degToRad, 1, 0, 0);
+		this.subAppearance.apply();
 		this.post.display();
 	this.popMatrix();
 
@@ -257,19 +263,23 @@ LightingScene.prototype.display = function() {
 		this.clock.display();
 	this.popMatrix();
 
-	//Submarine
+	/*//Submarine
 	this.pushMatrix();
+		this.materialDefault.apply();
 		this.translate(8.1, 4, 7);
 		this.submarine.display();
-	this.popMatrix();
+	this.popMatrix();*/
 
 // 	this.triang = new MyTriangleSub(this); DEBUG
 // 	this.triang.display();
-		this.pushMatrix();
-	this.floorAppearance.apply();
-	this.post.display();
-	this.popMatrix();
 
+	//DEBUG
+	this.trap.display();
+	this.pushMatrix();
+		this.subAppearance.apply();
+		//this.materialDefault.apply();
+		this.lamp.display();
+	this.popMatrix();
 	// ---- END Primitive drawing section
 
 	this.setUpdatePeriod(100); //100 ms Period

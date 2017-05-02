@@ -40,8 +40,6 @@ MyClockDisplay.prototype.initBuffers = function() {
 	//console.log("indices: " + this.indices.length + "  " + this.indices + "\n");
 		
 	this.primitiveType=this.scene.gl.TRIANGLES;
-
-
 	this.initGLBuffers();
 
 
