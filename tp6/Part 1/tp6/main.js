@@ -17,6 +17,8 @@ serialInclude([
 	'MyInterface.js',
 	'MySubmarine.js',
 	'MyTriangleSub.js',
+	'MyTrapezoid.js',
+	'MyLamp.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);

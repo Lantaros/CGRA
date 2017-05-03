@@ -33,8 +33,10 @@ LightingScene.prototype.init = function(application) {
 	this.wall = new MyQuad(this, -0.5, 1.5, -0.5, 1.5);
 	
 	this.floor = new MyQuad(this, 0,2, 0, 2);
-	this.post = new MyCylinder(this,40,2);
+	this.post = new MyCylinder(this,40, 2);
 	this.clock = new MyClock(this);
+	this.trap = new MyTrapezoid(this);
+	this.lamp = new MyLamp(this, 40, 10);
 
 	this.submarine = new MySubmarine(this);
 	
@@ -61,6 +63,9 @@ LightingScene.prototype.init = function(application) {
     this.displayAppearance = new CGFappearance(this);
 	this.displayAppearance.loadTexture("../resources/images/clock.png");
 	this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+	this.subAppearance = new CGFappearance(this);
+	this.subAppearance.loadTexture("../resources/images/HexagonalGrid.png");
 	
     this.white =  new CGFappearance(this);
 
@@ -204,14 +209,13 @@ LightingScene.prototype.display = function() {
 
 	
 	
-/*	// Left Wall
+	/*// Left Wall
 	this.pushMatrix();
-	this.translate(0, 4, 7.5);
-	this.rotate(90 * degToRad, 0, 1, 0);
-	this.scale(15, 8, 0.2);
+		this.translate(0, 4, 7.5);
+		this.rotate(90 * degToRad, 0, 1, 0);
+		this.scale(15, 8, 0.2);
 		this.windowAppearance.apply();
-
-	this.wall.display();	
+		this.wall.display();	
 	this.popMatrix();
 
 	// Plane Wall
@@ -257,6 +261,7 @@ LightingScene.prototype.display = function() {
 		this.translate(8,0,0.1);	
 		this.scale(0.1, 4, 0.1);
 		this.rotate(-90 * degToRad, 1, 0, 0);
+		this.subAppearance.apply();
 		this.post.display();
 	this.popMatrix();
 
@@ -266,13 +271,21 @@ LightingScene.prototype.display = function() {
 		this.clock.display();
 	this.popMatrix();
 
-	//submarine
+	/*//Submarine
 	this.pushMatrix();
+		this.materialDefault.apply();
 		this.translate(8.1, 4, 7);
 	//	this.submarineAppearances[currSubmarineAppearance].apply();
 		this.submarine.display();
-	this.popMatrix();
+	this.popMatrix();*/
 
+	//DEBUG
+	this.trap.display();
+	this.pushMatrix();
+		this.subAppearance.apply();
+		//this.materialDefault.apply();
+		this.lamp.display();
+	this.popMatrix();
 	// ---- END Primitive drawing section
 
 	this.setUpdatePeriod(100); //100 ms Period
@@ -283,18 +296,20 @@ LightingScene.prototype.update = function(currTime, valid) {
 		this.clock.update(currTime);
 };
 
-//for submarine
+/*GUI related functions*/
 LightingScene.prototype.doSomething = function (){
 	console.log("Doing something...");
 };
 LightingScene.prototype.clockHandler = function (){ 	
-	if (this.valid)
-		this.valid = false;
-	else
-		this.valid = true; 
+		this.valid = !this.valid;
 };
 
 //for submarine
+LightingScene.prototype.lights = function (){ 
+	console.log("light 1."); 
+};
+
+/*Submarine related functions*/
 LightingScene.prototype.subLeft = function (){
 	this.pushMatrix();
 		this.submarine.goLeft();
