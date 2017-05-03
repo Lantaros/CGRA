@@ -46,6 +46,12 @@ MyInterface.prototype.init = function(application) {
 	lights.add(this.scene, 'light2'); 
 	lights.add(this.scene, 'light3');
 	lights.add(this.scene, 'light4'); 
+
+
+	this.gui.add(this.scene, 'submarineAppearances', [ 'Texture1', 'Texture2', 'Texture3' ] ).name("Textures");
+
+	//for (int i = 0; this.scene.subTexs.size(); i++)
+		
 	
 	// add a slider
 	// must be a numeric variable of the scene, initialized in scene.init e.g.

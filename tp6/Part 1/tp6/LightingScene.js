@@ -71,6 +71,14 @@ LightingScene.prototype.init = function(application) {
     this.light4=true;
     this.speed=3;
 
+    this.submarineAppearances = new Array();    
+    this.submarineAppearanceList = {};
+    this.currSubmarineAppearance = 0;
+
+    this.submarineAppearanceList[0] = "Texture1";
+
+  //  this.submarineAppearances.push(displayAppearance);
+
     this.valid = true;
 };
 
@@ -174,7 +182,7 @@ LightingScene.prototype.display = function() {
 
 	// Update all lights used
 	this.updateLights();
-
+	
 	// Draw axis
 	this.axis.display();
 
@@ -261,12 +269,9 @@ LightingScene.prototype.display = function() {
 	//submarine
 	this.pushMatrix();
 		this.translate(8.1, 4, 7);
+	//	this.submarineAppearances[currSubmarineAppearance].apply();
 		this.submarine.display();
 	this.popMatrix();
-
-// 	this.triang = new MyTriangleSub(this); DEBUG
-// 	this.triang.display();
-
 
 	// ---- END Primitive drawing section
 
@@ -287,10 +292,6 @@ LightingScene.prototype.clockHandler = function (){
 		this.valid = false;
 	else
 		this.valid = true; 
-};
-
-LightingScene.prototype.lights = function (){ 
-	console.log("light 1."); 
 };
 
 //for submarine
@@ -320,5 +321,9 @@ LightingScene.prototype.subBack = function (){
 		this.submarine.goBack();
 		this.submarine.display();
 	this.popMatrix();
+};
+
+
+LightingScene.prototype.updateTexs = function(){
 };
 
