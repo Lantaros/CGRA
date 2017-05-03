@@ -206,20 +206,21 @@ LightingScene.prototype.display = function() {
 		this.clock.display();
 	this.popMatrix();
 
-	/*//Submarine
+	//Submarine
 	this.pushMatrix();
 		this.materialDefault.apply();
-		this.translate(8.1, 4, 7);
+		//this.translate(8.1, 4, 7);
 	//	this.submarineAppearances[currSubmarineAppearance].apply();
+		this.materialDefault.apply();
 		this.submarine.display();
-	this.popMatrix();*/
+	this.popMatrix();
 
 	//DEBUG
-	this.trap.display();
+	//this.trap.display();
 	this.pushMatrix();
 		this.subAppearance.apply();
 		//this.materialDefault.apply();
-		this.lamp.display();
+		//this.lamp.display();
 	this.popMatrix();
 	// ---- END Primitive drawing section
 
