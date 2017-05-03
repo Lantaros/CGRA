@@ -115,40 +115,20 @@ LightingScene.prototype.updateLights = function() {
 	else
 		this.lights[0].disable();
 		
-	if (!this.light1)
-		this.lights[0].disable();
-	else
-		this.lights[0].enable();
-
 	if (this.light2)
 		this.lights[1].enable();
 	else
 		this.lights[1].disable();
-
-	if (!this.light2)
-		this.lights[1].disable();
-	else
-		this.lights[1].enable();
 	
 	if (this.light3)
 		this.lights[2].enable();
 	else
 		this.lights[2].disable();
-
-	if (!this.light3)
-		this.lights[2].disable();
-	else
-		this.lights[2].enable();
 			
 	if (this.light4)
 		this.lights[3].enable();
 	else
-		this.lights[3].disable();
-		
-	if (!this.light4)
-		this.lights[3].disable();
-	else
-		this.lights[3].enable();			
+		this.lights[3].disable();		
 };
 
 
