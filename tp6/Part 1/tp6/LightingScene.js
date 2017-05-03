@@ -1,12 +1,5 @@
 var degToRad = Math.PI / 180.0;
 
-var BOARD_WIDTH = 6.0;
-
-var BOARD_HEIGHT = 4.0;
-
-var BOARD_A_DIVISIONS = 30;
-var BOARD_B_DIVISIONS = 100;
-
 function LightingScene() {
 	CGFscene.call(this);
 }
@@ -28,10 +21,7 @@ LightingScene.prototype.init = function(application) {
 
 	this.axis = new CGFaxis(this);
 
-	// Scene elements
-	this.table = new MyTable(this);
-	this.wall = new MyQuad(this, -0.5, 1.5, -0.5, 1.5);
-	
+	// Scene elements	
 	this.floor = new MyQuad(this, 0,2, 0, 2);
 	this.post = new MyCylinder(this,40, 2);
 	this.clock = new MyClock(this);
@@ -39,13 +29,9 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this, 40, 10);
 
 	this.submarine = new MySubmarine(this);
-	
-	//this.boardA = new Plane(this, BOARD_A_DIVISIONS);
-	//this.boardB = new Plane(this, BOARD_B_DIVISIONS);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
-
 	
 	this.materialTable = new CGFappearance(this);
 	this.materialTable.setSpecular(0.1,0.1,0.1,0);
@@ -73,18 +59,17 @@ LightingScene.prototype.init = function(application) {
     this.light1=true; 
     this.light2=true; 
     this.light3=true;
-    this.light4=true;
+    this.light4=true;    
+    this.valid = true;
     this.speed=3;
 
     this.submarineAppearances = new Array();    
-    this.submarineAppearanceList = {};
     this.currSubmarineAppearance = 0;
 
-    this.submarineAppearanceList[0] = "Texture1";
+	//push all sub textures to submarineAppearances
 
   //  this.submarineAppearances.push(displayAppearance);
 
-    this.valid = true;
 };
 
 LightingScene.prototype.initCameras = function() {
@@ -92,7 +77,6 @@ LightingScene.prototype.initCameras = function() {
 };
 
 LightingScene.prototype.initLights = function() {
-	//this.setGlobalAmbientLight(0.5,0.5,0.5, 1.0);
 	this.setGlobalAmbientLight(0,0,0, 1.0);
 
 	// Positions for four lights
@@ -187,7 +171,7 @@ LightingScene.prototype.display = function() {
 
 	// Update all lights used
 	this.updateLights();
-	
+	    
 	// Draw axis
 	this.axis.display();
 
@@ -206,56 +190,7 @@ LightingScene.prototype.display = function() {
 		this.floorAppearance.apply();
 		this.floor.display();
 	this.popMatrix();
-
 	
-	
-	/*// Left Wall
-	this.pushMatrix();
-		this.translate(0, 4, 7.5);
-		this.rotate(90 * degToRad, 0, 1, 0);
-		this.scale(15, 8, 0.2);
-		this.windowAppearance.apply();
-		this.wall.display();	
-	this.popMatrix();
-
-	// Plane Wall
-	this.pushMatrix();
-		this.translate(7.5, 4, 0);
-		this.scale(15, 8, 0.2);
-		this.white.apply();
-		this.wall.display();
-	this.popMatrix();
-
-	// First Table
-	this.pushMatrix();
-			this.translate(5, 0, 8);
-		
-		//this.materialTable.apply();
-		this.table.display();
-	this.popMatrix();
-
-	// Second Table
-	this.pushMatrix();
-		this.translate(12, 0, 8);
-		this.table.display();
-	this.popMatrix();
-
-	// Board A
-	this.pushMatrix();
-		this.translate(4, 4.5, 0.2);
-		this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
-		this.slidesAppearance.apply();
-		this.boardA.display();
-	this.popMatrix();
-
-	// Board B
-	this.pushMatrix();
-		this.translate(10.5, 4.5, 0.2);
-		this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
-		this.boardAppearance.apply();
-		this.boardB.display();
-	this.popMatrix();*/
-
 	// Post
 	this.pushMatrix();
 		this.translate(8,0,0.1);	
@@ -296,17 +231,9 @@ LightingScene.prototype.update = function(currTime, valid) {
 		this.clock.update(currTime);
 };
 
-/*GUI related functions*/
-LightingScene.prototype.doSomething = function (){
-	console.log("Doing something...");
-};
+
 LightingScene.prototype.clockHandler = function (){ 	
 		this.valid = !this.valid;
-};
-
-//for submarine
-LightingScene.prototype.lights = function (){ 
-	console.log("light 1."); 
 };
 
 /*Submarine related functions*/
@@ -338,7 +265,4 @@ LightingScene.prototype.subBack = function (){
 	this.popMatrix();
 };
 
-
-LightingScene.prototype.updateTexs = function(){
-};
 
