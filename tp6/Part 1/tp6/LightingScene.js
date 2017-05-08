@@ -246,4 +246,3 @@ LightingScene.prototype.subBack = function (){
 	this.popMatrix();
 };
 
-

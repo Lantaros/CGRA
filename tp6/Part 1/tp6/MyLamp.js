@@ -61,8 +61,8 @@
 	
 	//DEBUG
 //  	console.log("vertices: " + this.vertices.length + "   " + this.vertices + "\n");
- 	console.log("normals: " +  this.normals.length + "   " +  this.normals + "\n");
- 	console.log("indices: " + this.indices.length/3 + "  " + this.indices + "\n");
+ 	//console.log("normals: " +  this.normals.length + "   " +  this.normals + "\n");
+ 	//console.log("indices: " + this.indices.length/3 + "  " + this.indices + "\n");
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
  };

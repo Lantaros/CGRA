@@ -18,7 +18,8 @@ MyUnitCubeQuad.prototype.display = function () {
     this.scene.popMatrix();
 
     this.scene.pushMatrix();
-   	this.scene.translate(0,0,-0.5); //face de trás    
+    this.scene.translate(0,0,-0.5); //face de trás    
+    this.scene.rotate(-Math.PI,1,0,0);
     this.quad.display();
     this.scene.popMatrix();
 

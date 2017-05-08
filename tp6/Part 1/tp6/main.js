@@ -19,6 +19,7 @@ serialInclude([
 	'MyTriangleSub.js',
 	'MyTrapezoid.js',
 	'MyLamp.js',
+	'MyPropeller.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);
