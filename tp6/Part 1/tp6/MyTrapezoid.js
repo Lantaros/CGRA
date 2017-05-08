@@ -15,7 +15,7 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.vertices = new Array();
     this.normals = new Array();
     this.indices = new Array();
-    //this.texCoords = new Array();
+    this.texCoords = new Array();
 
 
     //Rectangle (z++) Z = 0.1
@@ -27,16 +27,24 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.indices.push(0, 1, 2);
     this.indices.push(0, 3, 1)
     
-    //Triangle (z++) Z = 0.1
+    //Right Triangle  (z++) Z = 0.1
     this.vertices.push(0.5, 0, 0.1);
     this.indices.push(3, 4, 1);
 
      for(let i = 0; i < 6; i++){
         this.normals.push(0, 0, 1);
     }
+
+     //Left Triangle  (z++) Z = 0.1
+    this.vertices.push(-0.5, 0, 0.1); //5
+    this.indices.push(0, 1, 5);
+
+     for(let i = 0; i < 6; i++){
+        this.normals.push(0, 0, 1);
+    }
     //--------------------------------------------
     
-     //Rectangle (z--) Z = -0.1
+     //Right Rectangle (z--) Z = -0.1
     this.vertices.push(0, 0,  -0.1);
     this.vertices.push(0.3, 0.25, -0.1);
     this.vertices.push(0, 0.25, -0.1);
