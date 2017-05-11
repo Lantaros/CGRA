@@ -36,8 +36,6 @@ MyClockDisplay.prototype.initBuffers = function() {
 	this.vertices.push(1,0,0);
 	this.normals.push(0, 0, 1);
 	this.texCoords.push(1, 0.5);
-
-	//console.log("indices: " + this.indices.length + "  " + this.indices + "\n");
 		
 	this.primitiveType=this.scene.gl.TRIANGLES;
 	this.initGLBuffers();
