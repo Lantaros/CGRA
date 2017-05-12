@@ -70,6 +70,5 @@ MySubmarine.prototype.updatePos = function(delta) {
 MySubmarine.prototype.updatePropellers = function(delta) {
 //     	this.x += (60/delta)*(this.speed*Math.cos(this.angle));
 //     	this.z -= (60/delta)*(this.speed*Math.sin(this.angle));
-	//	if (this.speed == this.MAX_SPEED)		
-		//	this.
+		
 };
