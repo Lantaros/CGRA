@@ -5,7 +5,7 @@
  function MyClock(scene, hour = 15, min= 30, sec = 45) {
  	CGFobject.call(this,scene);
 
-    this.frame=new MyCylinder(this.scene, 12,1);
+    this.frame =new MyCylinderClosed(this.scene, 12,1);
     this.clkDisp = new MyClockDisplay(this.scene, 12);
     this.handSec = new MyClockHand(this.scene, sec*(360/60), 0.8, 0.03);
     this.handMin = new MyClockHand(this.scene, min*(360/60), 0.54, 0.08);
@@ -20,7 +20,7 @@ MyClock.prototype.display = function () {
 	 this.scene.popMatrix(); 
     
     this.scene.pushMatrix();
-    this.scene.translate(0,0,0.2);  
+    this.scene.translate(0,0,0.205);  
     this.scene.scale(1,1,0.5); 
     this.scene.displayAppearance.apply();
     this.clkDisp.display();

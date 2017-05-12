@@ -182,7 +182,7 @@ LightingScene.prototype.display = function() {
 
 	//Clock
 	this.pushMatrix();
-		this.translate(8, 5, 0);
+		this.translate(8, 4.9, 0);
 		this.clock.display();
 	this.popMatrix();
 
@@ -190,7 +190,7 @@ LightingScene.prototype.display = function() {
 	this.pushMatrix();
 		this.materialDefault.apply();
 		//this.translate(8.1, 4, 7);
-	//	this.submarineAppearances[currSubmarineAppearance].apply();
+		//this.submarineAppearances[currSubmarineAppearance].apply();
 		this.materialDefault.apply();
 		this.submarine.display();
 	this.popMatrix();

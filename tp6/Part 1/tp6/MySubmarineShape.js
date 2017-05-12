@@ -5,7 +5,7 @@
 function MySubmarineShape(scene) {
     CGFobject.call(this, scene);
 
-    this.bodyCylinder = new MyCylinder(scene, 40, 4);
+    this.bodyCylinder = new MyCylinderClosed(scene, 40, 4);
     this.frontSphr = new MyLamp(scene, 40, 4);
     this.backSphr = this.frontSphr;
     this.tower = this.bodyCylinder;
