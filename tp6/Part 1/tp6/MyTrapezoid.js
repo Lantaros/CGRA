@@ -20,9 +20,13 @@ MyTrapezoid.prototype.initBuffers = function() {
 
     //Rectangle (z++) Z = 0.1
     this.vertices.push(0, 0,  0.1);
+        this.texCoords.push(0, 1);
     this.vertices.push(0.3, 0.25, 0.1);
+        this.texCoords.push(1, 0);
     this.vertices.push(0, 0.25, 0.1);
-    this.vertices.push(0.3, 0, 0.1);
+        this.texCoords.push(0, 0);
+    this.vertices.push(0.3, 0, 0.1);    
+        this.texCoords.push(1, 1);
 
     this.indices.push(0, 1, 2);
     this.indices.push(0, 3, 1)
@@ -31,21 +35,11 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.vertices.push(0.5, 0, 0.1);
     this.indices.push(3, 4, 1);
 
-     for(let i = 0; i < 6; i++)
+     for(let i = 0; i < 5; i++)
         this.normals.push(0, 0, 1);
 
-    
-
-     //Left Triangle  (z++) Z = 0.1
-    this.vertices.push(-0.5, 0, 0.1); //5
-    this.indices.push(0, 1, 5);
-
-     for(let i = 0; i < 6; i++)
-        this.normals.push(0, 0, 1);
-    
-
-     //Right Rectangle (z--) Z = -0.1
-    this.vertices.push(0, 0,  -0.1);
+     //Rectangle (z--) Z = -0.1
+    this.vertices.push(0, 0,  -0.1); //5
     this.vertices.push(0.3, 0.25, -0.1);
     this.vertices.push(0, 0.25, -0.1);
     this.vertices.push(0.3, 0, -0.1);
@@ -53,16 +47,28 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.indices.push(7, 6, 5);
     this.indices.push(6, 8, 5)
     
-    //Triangle (z--) Z = -0.1
+    //Right Triangle (z--) Z = -0.1
     this.vertices.push(0.5, 0, -0.1);
     this.indices.push(6, 9, 8);
 
-     for(let i = 0; i < 6; i++)
+     for(let i = 0; i < 5; i++)
         this.normals.push(0, 0, -1);
+
+//---------------------------------------
+     //Left Triangle  (z++) Z = 0.1
+    this.vertices.push(-0.2, 0, 0.1); //10
+    this.indices.push(0, 2, 10);
+    this.normals.push(0, 0, 1);
+
+    //Left Triangle  (z--) Z = -0.1
+    this.vertices.push(-0.2, 0, -0.1); //11
+    this.indices.push(11, 7, 5);
+    this.normals.push(0, 0, -1);
+    
     
 
  /*---------------------------------------*/
-     //Defining and Indexing sides
+     /*//Defining and Indexing sides
      //Bottom
     this.vertices.push(0, 0, 0.1); //10
     this.vertices.push(0.5, 0, 0.1);
@@ -111,7 +117,7 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.indices.push(22, 24, 25);
     for(let i = 0; i < 5; i++)
         this.normals.push(1, 1, 0);
-     
+     */
    
     
     this.primitiveType=this.scene.gl.TRIANGLES;
