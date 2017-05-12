@@ -13,6 +13,8 @@ function MySubmarine(scene) {
     this.angle = Math.PI/2;
     this.x = 0;
     this.z = 0;
+    this.speed = 0;
+    this.MAX_SPEED = 3;
 
 };
 
@@ -47,12 +49,27 @@ MySubmarine.prototype.goRight = function() {
         this.angle = newAng;
 };
 
-MySubmarine.prototype.goForw = function() {
-    	this.x += Math.cos(this.angle);
-    	this.z -= Math.sin(this.angle);
+MySubmarine.prototype.accelerate = function() {
+	if (this.speed < this.MAX_SPEED)
+    	this.speed += 0.2;
 };
 
-MySubmarine.prototype.goBack = function() {
-    	this.x -= Math.cos(this.angle);
-    	this.z += Math.sin(this.angle);
+
+MySubmarine.prototype.decelerate = function() {
+    	if (this.speed > -this.MAX_SPEED)
+    		this.speed -= 0.2;
+};
+MySubmarine.prototype.update = function(delta) {
+    	this.updatePos(delta); 
+    	this.updatePropellers(delta);
+};
+MySubmarine.prototype.updatePos = function(delta) {
+    	this.x += (60/delta)*(this.speed*Math.cos(this.angle));
+    	this.z -= (60/delta)*(this.speed*Math.sin(this.angle));   		
+};
+MySubmarine.prototype.updatePropellers = function(delta) {
+//     	this.x += (60/delta)*(this.speed*Math.cos(this.angle));
+//     	this.z -= (60/delta)*(this.speed*Math.sin(this.angle));
+	//	if (this.speed == this.MAX_SPEED)		
+		//	this.
 };

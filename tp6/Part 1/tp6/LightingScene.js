@@ -61,8 +61,8 @@ LightingScene.prototype.init = function(application) {
     this.light3=true;
     this.light4=true;    
     this.valid = true;
-    this.speed=3;
-
+    this.speed = this.submarine.speed;
+	this.lastTime = 5000;
     this.submarineAppearances = new Array();    
     this.currSubmarineAppearance = 0;
 
@@ -210,6 +210,10 @@ LightingScene.prototype.display = function() {
 LightingScene.prototype.update = function(currTime, valid) {
 	if (this.valid)
 		this.clock.update(currTime);
+   // this.speed=this.submarine.speed;
+   	   	this.delta = currTime - this.lastTime;
+   	this.lastTime = currTime;
+	this.submarine.update(this.delta);
 };
 
 
@@ -219,30 +223,19 @@ LightingScene.prototype.clockHandler = function (){
 
 /*Submarine related functions*/
 LightingScene.prototype.subLeft = function (){
-	this.pushMatrix();
 		this.submarine.goLeft();
-		this.submarine.display();
-	this.popMatrix();
 };
 
 LightingScene.prototype.subRight = function (){
-	this.pushMatrix();
+	
 		this.submarine.goRight();
-		this.submarine.display();
-	this.popMatrix();
 };
 
 LightingScene.prototype.subForw = function (){
-	this.pushMatrix();
-		this.submarine.goForw();
-		this.submarine.display();
-	this.popMatrix();
+		this.submarine.accelerate();
 };
 
 LightingScene.prototype.subBack = function (){
-	this.pushMatrix();
-		this.submarine.goBack();
-		this.submarine.display();
-	this.popMatrix();
+		this.submarine.decelerate();
 };
 

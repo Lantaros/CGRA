@@ -91,6 +91,7 @@ MySubmarineShape.prototype.display = function() {
   //Left Propeller
   this.scene.pushMatrix();
   	this.scene.translate(-1.06,-0.5,0);
+  	this.leftPropeller.rotate(Math.PI);
     this.leftPropeller.display();
   this.scene.popMatrix();
 
