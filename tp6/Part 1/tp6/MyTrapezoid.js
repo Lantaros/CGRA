@@ -34,6 +34,7 @@ MyTrapezoid.prototype.initBuffers = function() {
     //Right Triangle  (z++) Z = 0.1
     this.vertices.push(0.5, 0, 0.1);
     this.indices.push(3, 4, 1);
+    this.texCoords.push(1, 0);
 
      for(let i = 0; i < 5; i++)
         this.normals.push(0, 0, 1);
@@ -47,9 +48,17 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.indices.push(7, 6, 5);
     this.indices.push(6, 8, 5)
     
+
+    this.texCoords.push(0, 1);
+    this.texCoords.push(1, 0);
+    this.texCoords.push(0, 0);
+    this.texCoords.push(1, 1);
+
+
     //Right Triangle (z--) Z = -0.1
     this.vertices.push(0.5, 0, -0.1);
     this.indices.push(6, 9, 8);
+    this.texCoords.push(0, 1);
 
      for(let i = 0; i < 5; i++)
         this.normals.push(0, 0, -1);
@@ -59,67 +68,86 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.vertices.push(-0.2, 0, 0.1); //10
     this.indices.push(0, 2, 10);
     this.normals.push(0, 0, 1);
+    this.texCoords.push(0, 1);
 
     //Left Triangle  (z--) Z = -0.1
     this.vertices.push(-0.2, 0, -0.1); //11
     this.indices.push(11, 7, 5);
     this.normals.push(0, 0, -1);
+    this.texCoords.push(1, 1);
     
     
 
  /*---------------------------------------*/
-     /*//Defining and Indexing sides
+     //Defining and Indexing sides
      //Bottom
-    this.vertices.push(0, 0, 0.1); //10
+    this.vertices.push(-0.2, 0, 0.1); //12
     this.vertices.push(0.5, 0, 0.1);
-    this.vertices.push(0, 0, -0.1);
+    this.vertices.push(-0.2, 0, -0.1);//14
     this.vertices.push(0.5, 0, -0.1);
 
-    this.indices.push(12, 11, 10);
-    this.indices.push(12, 13, 11);
-    for(let i = 0; i < 5; i++)
+    this.texCoords.push(0, 1);
+    this.texCoords.push(1, 1);
+    this.texCoords.push(0, 0);
+    this.texCoords.push(1, 0);
+
+    this.indices.push(14, 15, 13);
+    this.indices.push(14, 13, 12);
+    for(let i = 0; i < 4; i++)
         this.normals.push(0, -1, 0);
-   
-
-    //--
-     //Left Side
-    this.vertices.push(0, 0, 0.1); //14
-    this.vertices.push(0, 0.25, 0.1);
-    this.vertices.push(0, 0.25, -0.1);
-    this.vertices.push(0, 0, -0.1);
-
-    this.indices.push(14, 15, 16);
-    this.indices.push(14, 16, 17);
-    for(let i = 0; i < 5; i++)
-        this.normals.push(-1, 0, 0);
-    
 
     //--
      //Top Parallelepiped
-    this.vertices.push(0, 0.25, 0.1); //18
+    this.vertices.push(0, 0.25, 0.1); //16
     this.vertices.push(0.3, 0.25, 0.1);
     this.vertices.push(0.3, 0.25, -0.1);
     this.vertices.push(0, 0.25, -0.1);
 
-    this.indices.push(18, 19, 20);
-    this.indices.push(18, 20, 21);
-    for(let i = 0; i < 5; i++)
+    this.indices.push(16, 18, 19);
+    this.indices.push(16, 17, 18);
+    for(let i = 0; i < 4; i++)
         this.normals.push(0, 1, 0);
+
+    this.texCoords.push(1, 0);//24 texCoord
+    this.texCoords.push(1, 1);
+    this.texCoords.push(0, 1);
+    this.texCoords.push(0, 0);
     
 
-    //Top trianglular prism
-    this.vertices.push(0.3, 0.25, 0.1); //22
+    //Top Right trianglular prism
+    this.vertices.push(0.3, 0.25, 0.1); //20
     this.vertices.push(0.5, 0, 0.1);
     this.vertices.push(0.5, 0, -0.1);
     this.vertices.push(0.3, 0.25, -0.1);
 
-    this.indices.push(22, 23, 24);
-    this.indices.push(22, 24, 25);
-    for(let i = 0; i < 5; i++)
+    this.indices.push(20, 21, 22);
+    this.indices.push(20, 22, 23);
+    for(let i = 0; i < 4; i++)
         this.normals.push(1, 1, 0);
-     */
+
+    this.texCoords.push(1, 0);//24 texCoord
+    this.texCoords.push(1, 1);
+    this.texCoords.push(0, 1);
+    this.texCoords.push(0, 0);
    
     
+    //Top Left trianglular prism
+    this.vertices.push(0, 0.25, 0.1); //24
+    this.vertices.push(-0.2, 0, 0.1);
+    this.vertices.push(-0.2, 0, -0.1);
+    this.vertices.push(0, 0.25, -0.1);
+
+    this.indices.push(24, 27, 26);
+    this.indices.push(24, 26, 25);
+    for(let i = 0; i < 4; i++)
+        this.normals.push(-1, -1, 0);
+
+  
+        this.texCoords.push(1, 0);//24 texCoord
+        this.texCoords.push(1, 1);
+        this.texCoords.push(0, 1);
+        this.texCoords.push(0, 0);
+
     this.primitiveType=this.scene.gl.TRIANGLES;
 	this.initGLBuffers();
 };
