@@ -10,7 +10,7 @@
     this.rec = new MyUnitCubeQuad(scene);
 	this.sphr = new MyLamp(scene, 40, 4);
 	this.cyl = new MyCylinder(scene, 40, 4);
-  
+    this.ang = 0;
     this.diameter= 0.4;
 
  };
@@ -26,6 +26,7 @@ MyPropeller.prototype.display = function() {
     this.scene.pushMatrix();
         this.scene.translate(0,0,0.2)
         this.scene.scale(0.75, 0.12, 0.03);
+        this.scene.rotate(this.ang, 0, 0, 1);
         this.rec.display();
     this.scene.popMatrix();
 
@@ -46,4 +47,12 @@ MyPropeller.prototype.display = function() {
         this.scene.popMatrix();
         this.cyl.display();
     this.scene.popMatrix();
+};
+
+MyPropeller.prototype.rotate = function(angle) {
+	let newAng = this.ang + angle;
+    if (newAng > 2 * Math.PI)
+        this.ang = newAng - 2 * Math.PI;
+    else
+        this.ang = newAng;
 };
