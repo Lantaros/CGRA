@@ -45,46 +45,49 @@ MySubmarineShape.prototype.display = function() {
 
   //BackFinHor
   this.scene.pushMatrix();
-    this.scene.translate(0.7,0,0);
-   // this.scene.scale(0.73, 1, 1);
+    this.scene.translate(-0.85,0,0);
+    this.scene.scale(5.5, 1, 1.5);
+    this.scene.rotate(Math.PI/2,1,0,0);
     this.backFinHor.display();
   this.scene.popMatrix();
 
    //BackFinVert
   this.scene.pushMatrix();
-    this.scene.translate(0.1,1,0);
+    this.scene.translate(0.1,-0.75,0);
+    this.scene.rotate(Math.PI/2, 0,1,0);
     this.scene.rotate(Math.PI/2, 0,0,1);
-   // this.scene.scale(0.73, 1, 1);
+    this.scene.scale(5.5, 1, 1.5);
     this.backFinVert.display();
   this.scene.popMatrix();
  
   //Tower
   this.scene.pushMatrix();
-    this.scene.translate(0, 0.72, 0.88/2 + 1);
+    this.scene.translate(0, 0.72, 0.88/2 + 2);
     this.scene.rotate(-Math.PI/2, 1, 0, 0);
-    this.scene.scale(0.5, 0.5, 0.57);
+    this.scene.scale(0.5, 0.5, 0.57+0.2);
     this.tower.display();
   this.scene.popMatrix();
  
   //TowerFin
   this.scene.pushMatrix();
-    this.scene.translate(0.6,1,1.2);
-   // this.scene.scale(0.73, 1, 1);
+    this.scene.translate(-0.51,1.1+0.05,1.6+1);
+    this.scene.scale(3.4, 0.5, 1.5);
+    this.scene.rotate(Math.PI/2, -1,0,0);
     this.towerFin.display();
   this.scene.popMatrix();
   
   //Periscope Vertical
   this.scene.pushMatrix();
-	this.scene.translate(0, 1.2, 1.2);
-    this.scene.scale(0.1, 1, 0.1);
+	this.scene.translate(0, 1.2+0.2, 1.2+1.5);
+    this.scene.scale(0.08, 1, 0.08);
     this.scene.rotate(-Math.PI/2, 1, 0, 0);
     this.periVert.display();
   this.scene.popMatrix();
 
   //Periscope Horizontal
   this.scene.pushMatrix();
-	this.scene.translate(0,  1.2 + 0.9, 1.2 - 0.23);
-    this.scene.scale(0.09, 0.09, 0.31);
+	this.scene.translate(0,  1.2 + 0.9 + 0.2, 1.2 - 0.23+1.5);
+    this.scene.scale(0.08, 0.08, 0.31);
     this.periVert.display();
   this.scene.popMatrix();
 

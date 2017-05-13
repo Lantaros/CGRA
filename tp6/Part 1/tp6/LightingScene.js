@@ -43,16 +43,23 @@ LightingScene.prototype.init = function(application) {
 	this.enableTextures(true);
 
 	this.floorAppearance = new CGFappearance(this);
-	this.floorAppearance.loadTexture("../resources/images/oceanFloor512.png");
-	this.floorAppearance.setTextureWrap('REPEAT', 'REPEAT');
+	this.floorAppearance.loadTexture("../resources/images/floor.png");
+	this.floorAppearance.setTextureWrap('CLAMP_TO_EDGE','CLAMP_TO_EDGE');
 
     this.displayAppearance = new CGFappearance(this);
 	this.displayAppearance.loadTexture("../resources/images/clock.png");
 	this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
-	this.subAppearance = new CGFappearance(this);
-	this.subAppearance.loadTexture("../resources/images/HexagonalGrid.png");
+	this.postAppearance = new CGFappearance(this);
+	this.postAppearance.loadTexture("../resources/images/HexagonalGrid.png");
 	
+	this.texture1 =  new CGFappearance(this);
+	this.texture1.loadTexture("../resources/images/Texture1.png");
+   	this.texture1.setTextureWrap('REPEAT', 'REPEAT');
+
+   	this.texture2 = this.postAppearance;
+
+   	
     this.white =  new CGFappearance(this);
 
     //for submarine
@@ -68,7 +75,8 @@ LightingScene.prototype.init = function(application) {
 
 	//push all sub textures to submarineAppearances
 
-  //  this.submarineAppearances.push(displayAppearance);
+   this.submarineAppearances.push(this.texture1);
+   this.submarineAppearances.push(this.texture2);
 
 };
 
@@ -176,7 +184,7 @@ LightingScene.prototype.display = function() {
 		this.translate(8,0,0.1);	
 		this.scale(0.1, 4, 0.1);
 		this.rotate(-90 * degToRad, 1, 0, 0);
-		this.subAppearance.apply();
+		this.postAppearance.apply();
 		this.post.display();
 	this.popMatrix();
 
@@ -188,20 +196,13 @@ LightingScene.prototype.display = function() {
 
 	//Submarine
 	this.pushMatrix();
-		this.materialDefault.apply();
+		//this.materialDefault.apply();
 		//this.translate(8.1, 4, 7);
-		//this.submarineAppearances[currSubmarineAppearance].apply();
-		this.materialDefault.apply();
+		this.submarineAppearances[this.currSubmarineAppearance].apply();
+		//this.materialDefault.apply();
 		this.submarine.display();
 	this.popMatrix();
 
-	//DEBUG
-	//this.trap.display();
-	this.pushMatrix();
-		this.subAppearance.apply();
-		//this.materialDefault.apply();
-		//this.lamp.display();
-	this.popMatrix();
 	// ---- END Primitive drawing section
 
 	this.setUpdatePeriod(100); //100 ms Period
