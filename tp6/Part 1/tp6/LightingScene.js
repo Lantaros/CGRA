@@ -27,12 +27,12 @@ LightingScene.prototype.init = function(application) {
 	this.clock = new MyClock(this);
 	this.trap = new MyTrapezoid(this);
 	this.lamp = new MyLamp(this, 40, 10);
-
 	this.submarine = new MySubmarine(this);
 
+	this.prop = new MyPropeller(this);
+
 	// Materials
-	this.materialDefault = new CGFappearance(this);
-	
+	this.materialDefault = new CGFappearance(this);	
 	this.materialTable = new CGFappearance(this);
 	this.materialTable.setSpecular(0.1,0.1,0.1,0);
 	this.materialTable.setAmbient(175,79,5,0);
@@ -59,7 +59,6 @@ LightingScene.prototype.init = function(application) {
 
    	this.texture2 = this.postAppearance;
 
-   	
     this.white =  new CGFappearance(this);
 
     //for submarine
@@ -110,7 +109,6 @@ LightingScene.prototype.initLights = function() {
 	this.lights[3].setConstantAttenuation(0) //Kc = 0
 	this.lights[3].setLinearAttenuation(0) //Ki = 0
 	this.lights[3].setQuadraticAttenuation(0.2) //Kq = 0.2
-
 
 };
 
@@ -196,11 +194,16 @@ LightingScene.prototype.display = function() {
 
 	//Submarine
 	this.pushMatrix();
-		//this.materialDefault.apply();
-		//this.translate(8.1, 4, 7);
-		this.submarineAppearances[this.currSubmarineAppearance].apply();
-		//this.materialDefault.apply();
-		this.submarine.display();
+		this.materialDefault.apply();
+		this.translate(8.1, 4, 7);
+	//	this.submarineAppearances[this.currSubmarineAppearance].apply();
+		this.materialDefault.apply();
+		//this.submarine.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+		//this.translate(1,1,1);
+		this.prop.display();
 	this.popMatrix();
 
 	// ---- END Primitive drawing section
@@ -209,13 +212,17 @@ LightingScene.prototype.display = function() {
 };
 
 LightingScene.prototype.update = function(currTime, valid) {
+	//update clock
 	if (this.valid)
 		this.clock.update(currTime);
+	//update submarine
    // this.speed=this.submarine.speed;
-   	   	this.delta = currTime - this.lastTime;
+   	this.delta = currTime - this.lastTime;
    	this.lastTime = currTime;
 	this.submarine.update(this.delta);
+	
 };
+
 
 
 LightingScene.prototype.clockHandler = function (){ 	

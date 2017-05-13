@@ -21,7 +21,6 @@ function MySubmarineShape(scene) {
 
 MySubmarineShape.prototype.display = function() {
 
-
   this.scene.pushMatrix();
 	//this.scene.translate(0, 0, 2.04);
     this.scene.scale(0.73 , 1, 4.08);
@@ -94,15 +93,19 @@ MySubmarineShape.prototype.display = function() {
   //Left Propeller
   this.scene.pushMatrix();
   	this.scene.translate(-1.06,-0.5,0);
-  	this.leftPropeller.rotate(Math.PI);
     this.leftPropeller.display();
   this.scene.popMatrix();
 
   //Right Propeller
   this.scene.pushMatrix();
   	this.scene.translate(1.06,-0.5,0);
-    this.leftPropeller.display();
+    this.rightPropeller.display();
   this.scene.popMatrix();
 
  };
 
+MySubmarineShape.prototype.update = function(speed) {
+	if (speed == 0.2)
+		this.leftPropeller.rotate(Math.PI/60);
+	console.log(speed);
+};
