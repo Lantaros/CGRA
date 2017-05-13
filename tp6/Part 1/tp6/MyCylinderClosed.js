@@ -42,8 +42,8 @@ MyCylinderClosed.prototype.initBuffers = function() {
             this.normals.push(Math.cos(j * stepAng), Math.sin(j * stepAng), 0);
             //Normals in line with the vertexes				
 
-            this.texCoords.push(Math.cos((j * stepAng) / 2 + 0.5), ((i + 1) / this.stacks) * (1 - (Math.sin(j * stepAng) / 2 + 0.5)));
-            this.texCoords.push(Math.cos((j * stepAng) / 2 + 0.5), ((i + 2) / this.stacks) * (1 - (Math.sin(j * stepAng) / 2 + 0.5)));
+            this.texCoords.push(Math.cos((j * stepAng) / 2),  (1 - (Math.sin(j * stepAng) / 2 + 0.5)));
+            this.texCoords.push(Math.cos((j * stepAng) / 2),  (1 - (Math.sin((j+1) * stepAng) / 2 + 0.5)));
 
             //indices
             //Ex indice: (stack atual -1) * 4 * numberSlices + 4 * slicesAtual + 0		
@@ -58,7 +58,7 @@ MyCylinderClosed.prototype.initBuffers = function() {
         }
 
     var lidVtxIdx = this.vertices.length/3;
-    console.log("Lid's 1st idx " + lidVtxIdx);
+    //console.log("Lid's 1st idx " + lidVtxIdx);
 
     //Back lid (Z--)
     this.vertices.push(0, 0, 0);
@@ -82,7 +82,7 @@ MyCylinderClosed.prototype.initBuffers = function() {
 
 
     lidVtxIdx = this.vertices.length/3;
-    console.log("2 Lid's 1st idx " + lidVtxIdx);
+    //console.log("2 Lid's 1st idx " + lidVtxIdx);DEBUG
 
     //Front lid (Z++)
     this.vertices.push(0, 0, 1);
@@ -105,7 +105,7 @@ MyCylinderClosed.prototype.initBuffers = function() {
     this.indices.push(lidVtxIdx, lidVtxIdx + i + 2, lidVtxIdx + i + 1);
 
 
-    console.log("Lid idx:" +  this.indices);
+    //console.log("Lid idx:" +  this.indices);DEBUG
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();

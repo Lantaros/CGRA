@@ -107,5 +107,5 @@ MySubmarineShape.prototype.display = function() {
 MySubmarineShape.prototype.update = function(speed) {
 	if (speed == 0.2)
 		this.leftPropeller.rotate(Math.PI/60);
-	console.log(speed);
+	//console.log(speed);
 };

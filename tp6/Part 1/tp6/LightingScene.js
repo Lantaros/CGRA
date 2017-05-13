@@ -22,12 +22,14 @@ LightingScene.prototype.init = function(application) {
 	this.axis = new CGFaxis(this);
 
 	// Scene elements	
-	this.floor = new MyQuad(this, 0,2, 0, 2);
-	this.post = new MyCylinder(this,40, 2);
-	this.clock = new MyClock(this);
-	this.trap = new MyTrapezoid(this);
-	this.lamp = new MyLamp(this, 40, 10);
-	this.submarine = new MySubmarine(this);
+ 	this.floor = new MyQuad(this, 0,2, 0, 2);
+ 	this.post = new MyCylinder(this,40, 2);
+ 	this.clock = new MyClock(this);
+ 	this.trap = new MyTrapezoid(this);
+ 	this.lamp = new MyLamp(this, 40, 10);
+ 	this.submarine = new MySubmarine(this);
+
+	this.cyl = new MyCylinder(this, 4, 1);
 
 	this.prop = new MyPropeller(this);
 
@@ -52,6 +54,8 @@ LightingScene.prototype.init = function(application) {
 
 	this.postAppearance = new CGFappearance(this);
 	this.postAppearance.loadTexture("../resources/images/HexagonalGrid.png");
+	//this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
 	
 	this.texture1 =  new CGFappearance(this);
 	this.texture1.loadTexture("../resources/images/Texture1.png");
@@ -168,7 +172,7 @@ LightingScene.prototype.display = function() {
 
 	// ---- BEGIN Primitive drawing section
 
-	// Floor
+	/*// Floor
 	this.pushMatrix();			
 		this.translate(7.5, 0, 7.5);
 		this.rotate(-90 * degToRad, 1, 0, 0);
@@ -194,16 +198,20 @@ LightingScene.prototype.display = function() {
 
 	//Submarine
 	this.pushMatrix();
-		this.materialDefault.apply();
 		this.translate(8.1, 4, 7);
 	//	this.submarineAppearances[this.currSubmarineAppearance].apply();
-		this.materialDefault.apply();
-		//this.submarine.display();
+		this.postAppearance.apply();
+		this.submarine.display();
 	this.popMatrix();
 
 	this.pushMatrix();
 		//this.translate(1,1,1);
 		this.prop.display();
+	this.popMatrix();*/
+
+	this.pushMatrix();
+	this.postAppearance.apply();
+	this.cyl.display();
 	this.popMatrix();
 
 	// ---- END Primitive drawing section
