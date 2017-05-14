@@ -44,7 +44,7 @@
  	}
 
  	for(let i = 0; i < this.stacks; i++){
-		for(let j = 0; j < this.slices; j++){	
+		for(let j = 0; j < this.slices-1; j++){	
 			this.indices.push((i*this.slices)+j, (i*this.slices)+this.slices+j+1, i*(this.slices)+this.slices+j);
 			this.indices.push((i*this.slices)+j, (i*this.slices)+(j+1)%this.slices, i*(this.slices)+this.slices+j+1);
 		}
@@ -55,9 +55,9 @@
 				
 	
 	//DEBUG
-  	console.log("vertices: " + this.vertices.length/3);
+  	//console.log("vertices: " + this.vertices.length/3);
 	//console.log("normals: " +  this.normals.length + "   " +  this.normals + "\n");
- 	console.log("indices: " + this.indices.length + "  " + this.indices + "\n");
+ 	//console.log("indices: " + this.indices.length + "  " + this.indices + "\n");
  	console.log("texCoords: " + this.texCoords.length + "  " + this.texCoords + "\n");
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();

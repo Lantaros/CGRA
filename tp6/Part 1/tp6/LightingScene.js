@@ -29,7 +29,7 @@ LightingScene.prototype.init = function(application) {
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
 
-	this.cyl = new MyCylinder(this, 4, 1);
+	this.cyl = new MyCylinder(this, 4, 2);
 
 	this.prop = new MyPropeller(this);
 
