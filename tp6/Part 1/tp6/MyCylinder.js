@@ -46,13 +46,14 @@
  	for(let i = 0; i < this.stacks; i++){
 		for(let j = 0; j < this.slices-1; j++){	
 			this.indices.push((i*this.slices)+j, (i*this.slices)+this.slices+j+1, i*(this.slices)+this.slices+j);
-			this.indices.push((i*this.slices)+j, (i*this.slices)+(j+1)%this.slices, i*(this.slices)+this.slices+j+1);
+			this.indices.push((i*this.slices)+j, (i*this.slices)+j+1, i*(this.slices)+this.slices+j+1);
 		}
  	}
 
-			this.indices.push(((this.stacks-1)*this.slices)+(this.slices-1), (((this.stacks-1)*this.slices)+this.slices+(this.slices-1)+1)- this.slices, (this.stacks-1)*(this.slices)+this.slices+(this.slices-1));
-			this.indices.push(((this.stacks-1)*this.slices)+(this.slices-1), 0, this.stacks*this.slices);
-				
+	for(let i = 0; i< this.stacks; i++){
+			this.indices.push((i*this.slices)+(this.slices-1), ((i*this.slices)+this.slices+(this.slices-1)+1)- this.slices, i*(this.slices)+this.slices+(this.slices-1));
+			this.indices.push((i*this.slices)+(this.slices-1), i*this.slices, this.stacks*this.slices);
+	}		
 	
 	//DEBUG
   	//console.log("vertices: " + this.vertices.length/3);
