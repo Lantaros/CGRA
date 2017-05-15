@@ -108,7 +108,7 @@ MyTrapezoid.prototype.initBuffers = function() {
     for(let i = 0; i < 4; i++)
         this.normals.push(0, 1, 0);
 
-    this.texCoords.push(1, 0);//24 texCoord
+    this.texCoords.push(1, 0);
     this.texCoords.push(1, 1);
     this.texCoords.push(0, 1);
     this.texCoords.push(0, 0);
@@ -143,10 +143,10 @@ MyTrapezoid.prototype.initBuffers = function() {
         this.normals.push(-1, -1, 0);
 
   
-        this.texCoords.push(1, 0);//24 texCoord
-        this.texCoords.push(1, 1);
-        this.texCoords.push(0, 1);
-        this.texCoords.push(0, 0);
+    this.texCoords.push(1, 0);
+    this.texCoords.push(1, 1);
+    this.texCoords.push(0, 1);
+    this.texCoords.push(0, 0);
 
     this.primitiveType=this.scene.gl.TRIANGLES;
 	this.initGLBuffers();
