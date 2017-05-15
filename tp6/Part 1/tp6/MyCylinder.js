@@ -35,7 +35,6 @@
 
  	for (let i = 0; i <=this.stacks; i++){
 		for (let j = 0; j <= this.slices; j++){
-			//vertices and normals
 			this.vertices.push(Math.cos(j*stepAng), Math.sin(j*stepAng),i*depth);	
 			this.normals.push(Math.cos(j*stepAng), Math.sin(j*stepAng), 0);						
 			this.texCoords.push(j*deltaS, i*deltaT);
