@@ -53,7 +53,7 @@
   	//console.log("vertices: " + this.vertices.length/3);
 	//console.log("normals: " +  this.normals.length + "   " +  this.normals + "\n");
  	//console.log("indices: " + this.indices.length + "  " + this.indices + "\n");
- 	console.log("texCoords: " + this.texCoords.length + "  " + this.texCoords + "\n");
+ 	//console.log("texCoords: " + this.texCoords.length + "  " + this.texCoords + "\n");
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();
  };

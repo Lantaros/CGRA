@@ -71,5 +71,21 @@ MyInterface.prototype.processKeyboard = function(event) {
 			this.scene.subBack();			
 			break;
 		}
+		case(113):{//'q'
+			this.scene.subUp();
+			break;
+		}
+		case(101):{//'e'
+			this.scene.subDown();
+			break;
+		}
+		case(112):{//'p'
+			this.scene.periUp();
+			break;
+		}
+		case(108):{//'l'
+			this.scene.periDown();
+			break;
+		}
 	};
 };

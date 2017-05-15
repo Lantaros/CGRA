@@ -45,8 +45,8 @@ LightingScene.prototype.init = function(application) {
 	this.enableTextures(true);
 
 	this.floorAppearance = new CGFappearance(this);
-	this.floorAppearance.loadTexture("../resources/images/floor.png");
-	this.floorAppearance.setTextureWrap('CLAMP_TO_EDGE','CLAMP_TO_EDGE');
+	this.floorAppearance.loadTexture("../resources/images/ocean.png");
+	//this.floorAppearance.setTextureWrap('CLAMP_TO_EDGE','CLAMP_TO_EDGE');
 
     this.displayAppearance = new CGFappearance(this);
 	this.displayAppearance.loadTexture("../resources/images/clock.png");
@@ -58,11 +58,13 @@ LightingScene.prototype.init = function(application) {
 
 	
 	this.texture1 =  new CGFappearance(this);
-	this.texture1.loadTexture("../resources/images/Texture1.png");
+	this.texture1.loadTexture("../resources/images/metal.png");
    	this.texture1.setTextureWrap('REPEAT', 'REPEAT');
 
    	this.texture2 = this.postAppearance;
 
+	this.texture3 = new CGFappearance(this);
+	this.texture3.setTextureWrap("../resources/images/coiso.jpg")
     this.white =  new CGFappearance(this);
 
     //for submarine
@@ -80,7 +82,7 @@ LightingScene.prototype.init = function(application) {
 
    this.submarineAppearances.push(this.texture1);
    this.submarineAppearances.push(this.texture2);
-
+   this.submarineAppearances.push(this.texture3);
 };
 
 LightingScene.prototype.initCameras = function() {
@@ -172,7 +174,7 @@ LightingScene.prototype.display = function() {
 
 	// ---- BEGIN Primitive drawing section
 
-	/*// Floor
+	// Floor
 	this.pushMatrix();			
 		this.translate(7.5, 0, 7.5);
 		this.rotate(-90 * degToRad, 1, 0, 0);
@@ -199,20 +201,15 @@ LightingScene.prototype.display = function() {
 	//Submarine
 	this.pushMatrix();
 		this.translate(8.1, 4, 7);
-	//	this.submarineAppearances[this.currSubmarineAppearance].apply();
-		this.postAppearance.apply();
+		this.submarineAppearances[this.currSubmarineAppearance].apply();
 		this.submarine.display();
 	this.popMatrix();
 
-	this.pushMatrix();
+	/*this.pushMatrix();
 		//this.translate(1,1,1);
 		this.prop.display();
 	this.popMatrix();*/
 
-	this.pushMatrix();
-	this.postAppearance.apply();
-	this.cyl.display();
-	this.popMatrix();
 
 	// ---- END Primitive drawing section
 
@@ -223,15 +220,12 @@ LightingScene.prototype.update = function(currTime, valid) {
 	//update clock
 	if (this.valid)
 		this.clock.update(currTime);
-	//update submarine
-   // this.speed=this.submarine.speed;
    	this.delta = currTime - this.lastTime;
    	this.lastTime = currTime;
+   	//update submarine
 	this.submarine.update(this.delta);
 	
 };
-
-
 
 LightingScene.prototype.clockHandler = function (){ 	
 		this.valid = !this.valid;
@@ -242,8 +236,7 @@ LightingScene.prototype.subLeft = function (){
 		this.submarine.goLeft();
 };
 
-LightingScene.prototype.subRight = function (){
-	
+LightingScene.prototype.subRight = function (){	
 		this.submarine.goRight();
 };
 
@@ -255,3 +248,17 @@ LightingScene.prototype.subBack = function (){
 		this.submarine.decelerate();
 };
 
+LightingScene.prototype.subUp = function (){
+		this.submarine.up();
+};
+
+LightingScene.prototype.subDown = function (){
+		this.submarine.down();
+};
+
+LightingScene.prototype.periUp = function (){
+		this.submarine.periUp();
+};
+LightingScene.prototype.periDown = function (){
+		this.submarine.periDown();
+};
