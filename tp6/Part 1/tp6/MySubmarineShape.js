@@ -121,12 +121,12 @@ MySubmarineShape.prototype.update = function(speed, delta) {
 		this.rightPropeller.rotate(2*Math.PI *(delta/1000));
 	}
 	else if (speed > this.MIN_SPEED){
-		this.leftPropeller.rotate(2*Math.PI * (delta/1000) * (speed/0.2));
-		this.rightPropeller.rotate(-2*Math.PI *(delta/1000) * (speed/0.2));
+		this.leftPropeller.rotate(2*Math.PI * (delta/1000) * (1+speed));
+		this.rightPropeller.rotate(-2*Math.PI *(delta/1000) * (1+speed));
 	}
 	else if (speed < -this.MIN_SPEED){
-		this.leftPropeller.rotate(-2*Math.PI * (delta/1000) *(speed/0.2));
-		this.rightPropeller.rotate(2*Math.PI *(delta/1000) * (speed/0.2));
+		this.leftPropeller.rotate(-2*Math.PI * (delta/1000) *(1+speed/0.2));
+		this.rightPropeller.rotate(2*Math.PI *(delta/1000) * (1+speed/0.2));
 	}
 
 	//console.log("speed: " + speed);
