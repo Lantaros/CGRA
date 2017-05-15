@@ -34,7 +34,7 @@
 	var depth = 1.0/this.stacks;
 
  	for (let i = 0; i <=this.stacks; i++){
-		for (let j = 0; j < this.slices; j++){
+		for (let j = 0; j <= this.slices; j++){
 			//vertices and normals
 			this.vertices.push(Math.cos(j*stepAng), Math.sin(j*stepAng),i*depth);	
 			this.normals.push(Math.cos(j*stepAng), Math.sin(j*stepAng), 0);						
@@ -44,16 +44,11 @@
  	}
 
  	for(let i = 0; i < this.stacks; i++){
-		for(let j = 0; j < this.slices-1; j++){	
-			this.indices.push((i*this.slices)+j, (i*this.slices)+this.slices+j+1, i*(this.slices)+this.slices+j);
-			this.indices.push((i*this.slices)+j, (i*this.slices)+j+1, i*(this.slices)+this.slices+j+1);
+		for(let j = 0; j <= this.slices; j++){	
+			this.indices.push((i*this.slices)+j+i, (i*this.slices)+this.slices+j+1+i, i*(this.slices)+this.slices+j+i);
+			this.indices.push((i*this.slices)+j+i, (i*this.slices)+j+1+i, i*(this.slices)+this.slices+j+1+i);
 		}
- 	}
-
-	for(let i = 0; i< this.stacks; i++){
-			this.indices.push((i*this.slices)+(this.slices-1), ((i*this.slices)+this.slices+(this.slices-1)+1)- this.slices, i*(this.slices)+this.slices+(this.slices-1));
-			this.indices.push((i*this.slices)+(this.slices-1), i*this.slices, this.stacks*this.slices);
-	}		
+ 	}		
 	
 	//DEBUG
   	//console.log("vertices: " + this.vertices.length/3);
