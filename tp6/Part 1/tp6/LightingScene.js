@@ -59,6 +59,8 @@ LightingScene.prototype.init = function(application) {
 
    	this.texture2 = this.postAppearance;
 
+	this.texture3 = new CGFappearance(this);
+	this.texture3.setTextureWrap("../resources/images/coiso.jpg")
     this.white =  new CGFappearance(this);
 
     //for submarine
@@ -76,7 +78,7 @@ LightingScene.prototype.init = function(application) {
 
    this.submarineAppearances.push(this.texture1);
    this.submarineAppearances.push(this.texture2);
-
+	this.submarineAppearances.push(this.texture3);
 };
 
 LightingScene.prototype.initCameras = function() {
@@ -194,17 +196,17 @@ LightingScene.prototype.display = function() {
 
 	//Submarine
 	this.pushMatrix();
-		this.materialDefault.apply();
+		//this.materialDefault.apply();
 		this.translate(8.1, 4, 7);
-	//	this.submarineAppearances[this.currSubmarineAppearance].apply();
-		this.materialDefault.apply();
-		//this.submarine.display();
+		this.submarineAppearances[this.currSubmarineAppearance].apply();
+	//	this.materialDefault.apply();
+		this.submarine.display();
 	this.popMatrix();
 
-	this.pushMatrix();
+	/*this.pushMatrix();
 		//this.translate(1,1,1);
 		this.prop.display();
-	this.popMatrix();
+	this.popMatrix();*/
 
 	// ---- END Primitive drawing section
 
