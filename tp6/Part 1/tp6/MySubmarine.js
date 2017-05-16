@@ -44,7 +44,7 @@ MySubmarine.prototype.updatePos = function(delta) {
 };
 
 MySubmarine.prototype.goLeft = function() {
-    let newAng = this.angleFrwBck + 10 * degToRad;
+    let newAng = this.angleFrwBck + 2 * degToRad;
     if (newAng > 2 * Math.PI)
         this.angleFrwBck = newAng - 2 * Math.PI;
     else
@@ -52,7 +52,7 @@ MySubmarine.prototype.goLeft = function() {
 };
 
 MySubmarine.prototype.goRight = function() {
-    let newAng = this.angleFrwBck - 10 * degToRad;
+    let newAng = this.angleFrwBck - 2 * degToRad;
     if (newAng < 0)
         this.angleFrwBck = 2 * Math.PI + newAng;
     else

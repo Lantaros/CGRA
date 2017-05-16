@@ -22,7 +22,7 @@ MyInterface.prototype.init = function(application) {
 	
 	this.gui = new dat.GUI();
 
-	this.gui.add(this.scene, 'clockHandler')
+	this.gui.add(this.scene, 'clockHandler').name('Clock');
 	
 	var lights=this.gui.addFolder("Luzes");
 	lights.open();
@@ -52,8 +52,8 @@ MyInterface.prototype.init = function(application) {
 MyInterface.prototype.processKeyboard = function(event) {
 	// call CGFinterface default code (omit if you want to override)
 	CGFinterface.prototype.processKeyboard.call(this,event);
-	
-	switch (event.keyCode)
+
+	switch (event.keyCode || event.which)
 	{
 		case (97):{ //'a'
 			this.scene.subLeft();
@@ -87,5 +87,69 @@ MyInterface.prototype.processKeyboard = function(event) {
 			this.scene.periDown();
 			break;
 		}
+	};
+};
+
+MyInterface.prototype.processKeyUp = function(event) {
+	// call CGFinterface default code (omit if you want to override)
+	CGFinterface.prototype.processKeyboard.call(this, event);
+
+	switch (event.keyCode || event.which)
+	{
+		case (97): //'a'
+		case (65):{
+			this.scene.rotFinRight = false;
+			this.scene.rotFinLeft = false;
+			break;
+		}
+		case (100): //lower case d
+		case (68):{//'d'
+			this.scene.rotFinLeft = false;
+			this.scene.rotFinRight = false;
+			break;			
+		}
+		case(113):
+		case(81):{//'q'
+			console.log("Heere");
+			break;
+		}
+		case(101):
+		case(69):{//'e'
+			console.log("Heere");
+			break;
+		}
+		
+	};
+};
+MyInterface.prototype.processKeyDown = function(event) {
+	// call CGFinterface default code (omit if you want to override)
+	CGFinterface.prototype.processKeyboard.call(this,event);
+		switch (event.keyCode || event.which)
+	{
+		case (97): //lower case a
+		case (65):{ //'a'
+			this.scene.rotFinRight = true;
+			this.scene.rotFinLeft = false;
+			break;
+		}
+		case (100): //lower case d
+		case (68):{//'d'
+			this.scene.rotFinRight = false;
+			this.scene.rotFinLeft = true;			
+			break;			
+		}
+		case(113):
+		case(81):{//'q'
+			this.scene.rotFinUp = false;
+			this.scene.rotFinDown = true;
+			break;
+		}
+		case(101):
+		case(69):{//'e'
+			this.scene.rotFinUp = true;
+			this.scene.rotFinDown = false;
+			break;
+		}
+		
 	};
 };

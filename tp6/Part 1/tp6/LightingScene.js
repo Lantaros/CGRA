@@ -77,6 +77,10 @@ LightingScene.prototype.init = function(application) {
 	this.lastTime = 5000;
     this.submarineAppearances = new Array();    
     this.currSubmarineAppearance = 0;
+    this.rotFinLeft = false;
+    this.rotFinRight = false;
+    this.rotFinUp = false;
+    this.rotFinDown = false;
 
 	//push all sub textures to submarineAppearances
 
@@ -262,3 +266,4 @@ LightingScene.prototype.periUp = function (){
 LightingScene.prototype.periDown = function (){
 		this.submarine.periDown();
 };
+
