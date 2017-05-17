@@ -26,11 +26,12 @@ function MySubmarine(scene) {
     this.target1 = new MyTarget(this.scene,-5,-5,-5);
     this.target2 = new MyTarget(this.scene,-1,-5,-5);
 
-    this.torpedo = new MyTorpedo(this.scene,  this.x , this.y-2,  this.z,  this.angleUpDown,  this.angleFrwBck);
-
+    this.torpedo = null;
     this.targetList = new Array();    
     this.targetList.push(this.target1);
     this.targetList.push(this.target2);
+
+    this.currTarget = 0;
    
 };
 
@@ -42,11 +43,13 @@ MySubmarine.prototype.display = function() {
         this.subShape.display();
     this.scene.popMatrix();    
 
-    this.scene.pushMatrix();
-        //this.scene.translate(this.x,this.y,this.z);
-        this.scene.rotate(Math.PI, 1,0,0);
-        this.torpedo.display();
-    this.scene.popMatrix();
+     if (this.torpedo != null){
+            this.scene.pushMatrix();
+            //this.scene.translate(this.x,this.y,this.z);
+            this.scene.rotate(Math.PI, 1,0,0);
+            this.torpedo.display();
+      this.scene.popMatrix();
+    }
 
 };
 
@@ -105,4 +108,13 @@ MySubmarine.prototype.periUp = function() {
 
 MySubmarine.prototype.periDown = function() {
      this.subShape.periscopeDown();
+};
+
+MySubmarine.prototype.fireTorpedo = function() {
+    if (this.currTarget <= this.targetList.length-1){
+       this.torpedo = new MyTorpedo(this.scene,  this.x , this.y-2,  this.z,  this.angleUpDown,  this.angleFrwBck);
+        this.currTarget++;
+    }
+    else
+        console.log("Hawe");
 };

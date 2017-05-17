@@ -254,7 +254,11 @@ LightingScene.prototype.subDown = function (){
 LightingScene.prototype.periUp = function (){
 		this.submarine.periUp();
 };
+
 LightingScene.prototype.periDown = function (){
 		this.submarine.periDown();
 };
 
+LightingScene.prototype.fireTorpedo = function (){
+		this.submarine.fireTorpedo();
+};

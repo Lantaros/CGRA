@@ -87,6 +87,10 @@ MyInterface.prototype.processKeyboard = function(event) {
 			this.scene.periDown();
 			break;
 		}
+		case(102):{//'f'
+			this.scene.fireTorpedo();
+			break;
+		}
 	};
 };
 
