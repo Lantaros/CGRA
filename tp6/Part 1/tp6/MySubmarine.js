@@ -14,15 +14,26 @@ function MySubmarine(scene) {
     this.angleUpDown = 0;
 
     //Coordinates
-    this.x = 0;
-    this.y = 0;
-    this.z = 0;
-    
+    this.x =  8.1;
+    this.y =  4;
+    this.z = 7;
+
     //Speeds
     this.speed = 0;
     this.MAX_SPEED = 3;
 
+ 	//Targets
+    this.target1 = new MyTarget(this.scene,-5,-5,-5);
+    this.target2 = new MyTarget(this.scene,-1,-5,-5);
+
+    this.torpedo = new MyTorpedo(this.scene,  this.x , this.y-2,  this.z,  this.angleUpDown,  this.angleFrwBck);
+
+    this.targetList = new Array();    
+    this.targetList.push(this.target1);
+    this.targetList.push(this.target2);
+   
 };
+
 MySubmarine.prototype.display = function() {
     this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
@@ -30,6 +41,13 @@ MySubmarine.prototype.display = function() {
         this.scene.rotate(this.angleUpDown, -1,0,0);
         this.subShape.display();
     this.scene.popMatrix();    
+
+    this.scene.pushMatrix();
+        //this.scene.translate(this.x,this.y,this.z);
+        this.scene.rotate(Math.PI, 1,0,0);
+        this.torpedo.display();
+    this.scene.popMatrix();
+
 };
 
 MySubmarine.prototype.update = function(delta) {
