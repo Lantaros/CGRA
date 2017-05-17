@@ -217,17 +217,17 @@ LightingScene.prototype.display = function() {
 
 	// ---- END Primitive drawing section
 
-	this.setUpdatePeriod(100); //100 ms Period
+	this.setUpdatePeriod(1000/60); //100 ms Period
 };
 
 LightingScene.prototype.update = function(currTime, valid) {
-	//update clock
+	//update clock	
+	var delta = currTime - this.lastTime;
+	this.lastTime = currTime;
 	if (this.valid)
-		this.clock.update(currTime);
-   	this.delta = currTime - this.lastTime;
-   	this.lastTime = currTime;
+		this.clock.update(delta);
    	//update submarine
-	this.submarine.update(this.delta);
+	this.submarine.update(delta);
 	
 };
 

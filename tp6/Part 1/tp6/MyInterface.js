@@ -102,19 +102,19 @@ MyInterface.prototype.processKeyUp = function(event) {
 			this.scene.rotFinLeft = false;
 			break;
 		}
-		case (100): //lower case d
-		case (68):{//'d'
+		case (100)://'d'
+		case (68):{
 			this.scene.rotFinLeft = false;
 			this.scene.rotFinRight = false;
 			break;			
 		}
-		case(113):
-		case(81):{//'q'
+		case(113)://'q'
+		case(81):{
 			console.log("Heere");
 			break;
 		}
-		case(101):
-		case(69):{//'e'
+		case(101)://'e'
+		case(69):{
 			console.log("Heere");
 			break;
 		}
@@ -126,26 +126,26 @@ MyInterface.prototype.processKeyDown = function(event) {
 	CGFinterface.prototype.processKeyboard.call(this,event);
 		switch (event.keyCode || event.which)
 	{
-		case (97): //lower case a
-		case (65):{ //'a'
-			this.scene.rotFinRight = true;
-			this.scene.rotFinLeft = false;
+		case (97)://'a'
+		case (65):{ 
+			this.scene.rotFinRight = false;
+			this.scene.rotFinLeft = true;
 			break;
 		}
-		case (100): //lower case d
-		case (68):{//'d'
-			this.scene.rotFinRight = false;
-			this.scene.rotFinLeft = true;			
+		case (100): //'d'
+		case (68):{
+			this.scene.rotFinRight = true;
+			this.scene.rotFinLeft = false;			
 			break;			
 		}
-		case(113):
-		case(81):{//'q'
+		case(113)://'q'
+		case(81):{
 			this.scene.rotFinUp = false;
 			this.scene.rotFinDown = true;
 			break;
 		}
-		case(101):
-		case(69):{//'e'
+		case(101)://'e'
+		case(69):{
 			this.scene.rotFinUp = true;
 			this.scene.rotFinDown = false;
 			break;

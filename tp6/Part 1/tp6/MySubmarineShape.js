@@ -118,7 +118,7 @@ MySubmarineShape.prototype.display = function() {
 };
 
 MySubmarineShape.prototype.update = function(speed, delta) {
-	//minimum speed
+	//Minimum speed
 	if (speed == this.MIN_SPEED){
 		this.leftPropeller.rotate(2*Math.PI * (delta/1000));
 		this.rightPropeller.rotate(-2*Math.PI *(delta/1000));
@@ -132,12 +132,12 @@ MySubmarineShape.prototype.update = function(speed, delta) {
 		this.rightPropeller.rotate(-2*Math.PI *(delta/1000) * (1+speed));
 	}
 	else if (speed < -this.MIN_SPEED){
-		this.leftPropeller.rotate(-2*Math.PI * (delta/1000) *(1+speed/0.2));
-		this.rightPropeller.rotate(2*Math.PI *(delta/1000) * (1+speed/0.2));
+		this.leftPropeller.rotate(-2*Math.PI * (delta/1000) * (1-speed));
+		this.rightPropeller.rotate(2*Math.PI *(delta/1000) * (1-speed));
 	}
 	//Fin Animations
 
-	//if (speed > 0){
+	//if (speed != 0){
 		//Vertical
 		if (this.scene.rotFinLeft){
 			if (this.vertFinAng < Math.PI/3)
@@ -185,8 +185,8 @@ MySubmarineShape.prototype.update = function(speed, delta) {
 				else
 					this.horFinAng += 1* degToRad;
 			}
-		}
-//	}
+		//}
+	}
 	
 };
 

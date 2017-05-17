@@ -10,7 +10,7 @@ function MySubmarine(scene) {
     this.cyl = new MyCylinderClosed(scene,40,2);
 
     //Angles
-    this.angleFrwBck = Math.PI / 2;
+    this.angleLeftRight = Math.PI / 2;
     this.angleUpDown = 0;
 
     //Coordinates
@@ -26,7 +26,7 @@ function MySubmarine(scene) {
 MySubmarine.prototype.display = function() {
     this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.angleFrwBck + Math.PI / 2, 0, 1, 0);
+        this.scene.rotate(this.angleLeftRight + Math.PI / 2, 0, 1, 0);
         this.scene.rotate(this.angleUpDown, -1,0,0);
         this.subShape.display();
     this.scene.popMatrix();    
@@ -38,25 +38,25 @@ MySubmarine.prototype.update = function(delta) {
 };
 
 MySubmarine.prototype.updatePos = function(delta) {
-    this.x += (60 / delta) * (this.speed * Math.cos(this.angleUpDown) * Math.cos(this.angleFrwBck));
-    this.y += (60 / delta) * (this.speed * Math.sin(this.angleUpDown));
-    this.z -= (60 / delta) * (this.speed * Math.cos(this.angleUpDown) * Math.sin(this.angleFrwBck));
+    this.x += (delta/1000) * (this.speed * Math.cos(this.angleUpDown) * Math.cos(this.angleLeftRight));
+    this.y += (delta/1000) * (this.speed * Math.sin(this.angleUpDown));
+    this.z -= (delta/1000) * (this.speed * Math.cos(this.angleUpDown) * Math.sin(this.angleLeftRight));
 };
 
 MySubmarine.prototype.goLeft = function() {
-    let newAng = this.angleFrwBck + 2 * degToRad;
+    let newAng = this.angleLeftRight + 2 * degToRad;
     if (newAng > 2 * Math.PI)
-        this.angleFrwBck = newAng - 2 * Math.PI;
+        this.angleLeftRight = newAng - 2 * Math.PI;
     else
-        this.angleFrwBck = newAng;
+        this.angleLeftRight = newAng;
 };
 
 MySubmarine.prototype.goRight = function() {
-    let newAng = this.angleFrwBck - 2 * degToRad;
+    let newAng = this.angleLeftRight - 2 * degToRad;
     if (newAng < 0)
-        this.angleFrwBck = 2 * Math.PI + newAng;
+        this.angleLeftRight = 2 * Math.PI + newAng;
     else
-        this.angleFrwBck = newAng;
+        this.angleLeftRight = newAng;
 };
 
 MySubmarine.prototype.accelerate = function() {
