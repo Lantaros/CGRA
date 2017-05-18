@@ -110,12 +110,14 @@ MyInterface.prototype.processKeyUp = function(event) {
 		}
 		case(113)://'q'
 		case(81):{
-			console.log("Heere");
+			this.scene.rotFinDown = false;
+			this.scene.submarine.angleUpDownDelta = 0;
 			break;
 		}
 		case(101)://'e'
 		case(69):{
-			console.log("Heere");
+			this.scene.rotFinUp = false;
+			this.scene.submarine.angleUpDownDelta = 0;
 			break;
 		}
 		

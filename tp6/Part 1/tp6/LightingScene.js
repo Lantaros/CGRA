@@ -64,10 +64,9 @@ LightingScene.prototype.init = function(application) {
    	this.texture2 = this.postAppearance;
 
 	this.texture3 = new CGFappearance(this);
-	this.texture3.setTextureWrap("../resources/images/coiso.jpg")
-    this.white =  new CGFappearance(this);
-
-    //for submarine
+	this.texture3.loadTexture("../resources/images/WrinkledPlastic.jpg")
+   
+    //For submarine
     this.light1=true; 
     this.light2=true; 
     this.light3=true;
@@ -221,12 +220,13 @@ LightingScene.prototype.display = function() {
 };
 
 LightingScene.prototype.update = function(currTime, valid) {
-	//update clock	
 	var delta = currTime - this.lastTime;
 	this.lastTime = currTime;
+	
 	if (this.valid)
 		this.clock.update(delta);
-   	//update submarine
+   
+   	//Update submarine
 	this.submarine.update(delta);
 	
 };
