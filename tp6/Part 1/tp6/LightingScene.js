@@ -207,13 +207,9 @@ LightingScene.prototype.display = function() {
 
 	// ---- END Primitive drawing section
 
-<<<<<<< HEAD
-	this.setUpdatePeriod(100); //100 ms Period
-};	
-=======
-	this.setUpdatePeriod(1000/60); //100 ms Period
+
+	this.setUpdatePeriod(1000/60); 
 };
->>>>>>> 101fbe18ff5cd2861e4ab851e78df9b451bb332e
 
 LightingScene.prototype.update = function(currTime, valid) {
 	var delta = currTime - this.lastTime;
