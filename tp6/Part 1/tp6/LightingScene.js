@@ -209,7 +209,7 @@ LightingScene.prototype.display = function() {
 	// ---- END Primitive drawing section
 
 	this.setUpdatePeriod(100); //100 ms Period
-};
+};	
 
 LightingScene.prototype.update = function(currTime, valid) {
 	//update clock
