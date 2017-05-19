@@ -29,7 +29,9 @@ LightingScene.prototype.init = function(application) {
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
 
-    
+	this.cyl = new MyCylinder(this, 4, 2);
+
+	this.prop = new MyPropeller(this);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);	
@@ -201,21 +203,20 @@ LightingScene.prototype.display = function() {
 
 	//Submarine
 	this.pushMatrix();
+		this.translate(8.1, 4, 7);
 		this.submarineAppearances[this.currSubmarineAppearance].apply();
 		this.submarine.display();
 	this.popMatrix();
 
-	//Torpedo
-	
 	/*this.pushMatrix();
-		this.submarineAppearances[this.currSubmarineAppearance].apply();
-		this.submarine.display();
+		//this.translate(1,1,1);
+		this.prop.display();
 	this.popMatrix();*/
+
 
 	// ---- END Primitive drawing section
 
-
-	this.setUpdatePeriod(1000/60); 
+	this.setUpdatePeriod(1000/60); //100 ms Period
 };
 
 LightingScene.prototype.update = function(currTime, valid) {
@@ -262,11 +263,7 @@ LightingScene.prototype.subDown = function (){
 LightingScene.prototype.periUp = function (){
 		this.submarine.periUp();
 };
-
 LightingScene.prototype.periDown = function (){
 		this.submarine.periDown();
 };
 
-LightingScene.prototype.fireTorpedo = function (){
-		this.submarine.fireTorpedo();
-};
