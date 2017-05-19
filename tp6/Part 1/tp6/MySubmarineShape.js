@@ -54,7 +54,7 @@ MySubmarineShape.prototype.display = function() {
   //BackFinHor
   this.scene.pushMatrix();
    this.scene.rotate(this.horFinAng, 1,0,0);
-    this.scene.translate(-0.85,0.14,0);
+    this.scene.translate(-0.85,0.14,0-0.3);
     this.scene.scale(5.5, 0.8, 1.5);
     this.scene.rotate(Math.PI/2,1,0,0);
     this.scene.translate(0,0.125,0);
@@ -118,7 +118,7 @@ MySubmarineShape.prototype.display = function() {
 };
 
 MySubmarineShape.prototype.update = function(speed, delta) {
-	//minimum speed
+	//Minimum speed
 	if (speed == this.MIN_SPEED){
 		this.leftPropeller.rotate(2*Math.PI * (delta/1000));
 		this.rightPropeller.rotate(-2*Math.PI *(delta/1000));
@@ -132,16 +132,14 @@ MySubmarineShape.prototype.update = function(speed, delta) {
 		this.rightPropeller.rotate(-2*Math.PI *(delta/1000) * (1+speed));
 	}
 	else if (speed < -this.MIN_SPEED){
-		this.leftPropeller.rotate(-2*Math.PI * (delta/1000) *(1+speed/0.2));
-		this.rightPropeller.rotate(2*Math.PI *(delta/1000) * (1+speed/0.2));
+		this.leftPropeller.rotate(-2*Math.PI * (delta/1000) * (1-speed));
+		this.rightPropeller.rotate(2*Math.PI *(delta/1000) * (1-speed));
 	}
 	//Fin Animations
-
-	//if (speed > 0){
 		//Vertical
 		if (this.scene.rotFinLeft){
 			if (this.vertFinAng < Math.PI/3)
-				this.vertFinAng+= 3 * degToRad;		
+				this.vertFinAng+=  3 * degToRad;		
 		}
 		else if (this.scene.rotFinRight) {
 			if (this.vertFinAng > -Math.PI/3)
@@ -153,23 +151,24 @@ MySubmarineShape.prototype.update = function(speed, delta) {
 				if (this.vertFinAng < 1*degToRad)
 					this.vertFinAng = 0;
 				else
-					this.vertFinAng -= 3* degToRad;
+					this.vertFinAng -=  3* degToRad;
 			}
 			else if (this.vertFinAng < 0){
 				if (this.vertFinAng > -1*degToRad)
 					this.vertFinAng = 0;
 				else
-					this.vertFinAng += 3* degToRad;
+					this.vertFinAng +=  3* degToRad;
 			}
 		}
+		
 		//Horizontal
 		if (this.scene.rotFinUp){
 			if (this.horFinAng> -Math.PI/8)
-				this.horFinAng -= 3 * degToRad;		
+				this.horFinAng -= 1.25 * degToRad;		
 		}
 		else if (this.scene.rotFinDown) {
 			if (this.horFinAng < Math.PI/8)
-				this.horFinAng += 3 * degToRad;
+				this.horFinAng += 1.25 * degToRad;
 		}
 
 		else { //back to initial position
@@ -185,8 +184,7 @@ MySubmarineShape.prototype.update = function(speed, delta) {
 				else
 					this.horFinAng += 1* degToRad;
 			}
-		}
-//	}
+	}
 	
 };
 

@@ -45,12 +45,9 @@ MyClock.prototype.display = function () {
 	this.primitiveType=this.scene.gl.TRIANGLES;
 };
 
-MyClock.prototype.update = function (currTime) {
-	//console.log(currTime);
-	if((Math.round(currTime / 100) % 10) == 0){
-		this.handSec.addAngle((1/60)* 360);
-		this.handMin.addAngle((1/60/60)* 360);
-		this.handHour.addAngle((1/3600)* 360);
-	}
-
+MyClock.prototype.update = function (delta) {
+	var ang = delta/1000 * 360;
+		this.handSec.addAngle(ang/60);
+		this.handMin.addAngle(ang/60/60);
+		this.handHour.addAngle(ang/60/60/12);
 };
