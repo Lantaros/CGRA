@@ -24,7 +24,7 @@ function MySubmarine(scene) {
     this.MAX_SPEED = 3;
 
  	//Targets
-    this.target1 = new MyTarget(this.scene,-5,-5,-5);
+    this.target1 = new MyTarget(this.scene,2,0,2);
     this.target2 = new MyTarget(this.scene,-1,-5,-5);
     this.targetList = new Array();    
     this.targetList.push(this.target1);
@@ -52,17 +52,18 @@ MySubmarine.prototype.display = function() {
         this.subShape.display();
     this.scene.popMatrix();    
 
-     if (this.torpedo != null){
-            this.scene.pushMatrix();
-            this.scene.rotate( this.torpAng.z,0,0,1);
-            this.scene.rotate( this.torpAng.y,0,1,0);
-            this.scene.rotate( this.torpAng.x,1,0,0);
+ if (this.torpedo != null){
+         this.scene.pushMatrix();
             this.scene.translate(this.nextPoint.x,this.nextPoint.y,this.nextPoint.z);
-            this.scene.rotate(Math.PI, 1,0,0);
+           // this.scene.rotate( this.torpAng.z,0,0,1);
+         //  this.scene.rotate( this.torpAng.x,1,0,0);
+         //  this.scene.rotate( this.torpAng.y,0,1,0);
+        //     this.scene.rotate(Math.PI/6, this.torpAng.x, this.torpAng.y, this.torpAng.z);
+         //   this.scene.rotate(Math.PI, 1,0,0);
+         this.scene.rotate(this.torpedoAng, this.torpAng.x, this.torpAng.y, this.torpAng.z);
             this.torpedo.display();
       this.scene.popMatrix();
-    }
-
+  }
     this.scene.pushMatrix();
         this.target1.display();
     this.scene.popMatrix();
@@ -112,18 +113,21 @@ MySubmarine.prototype.updateTorpedoPos = function(t,p1,p2,p3,p4) {
     this.torpAng.y = Math.atan( (3*p4.y - 9*p3.y + 9*p2.y - 3*p1.y)*Math.pow(t,2) + (6*p3.y - 12*p2.y + 6*p1.y)*t + 3*p2.y - 3*p1.y);
     this.torpAng.z = Math.atan( (3*p4.z - 9*p3.z + 9*p2.z - 3*p1.z)*Math.pow(t,2) + (6*p3.z - 12*p2.z + 6*p1.z)*t + 3*p2.z - 3*p1.z);
 
+    this.torpedoAng = Math.atan2((3*p4.y - 9*p3.y + 9*p2.y - 3*p1.y)*Math.pow(t,2) + (6*p3.y - 12*p2.y + 6*p1.y)*t + 3*p2.y - 3*p1.y, (3*p4.z - 9*p3.z + 9*p2.z - 3*p1.z)*Math.pow(t,2) + (6*p3.z - 12*p2.z + 6*p1.z)*t + 3*p2.z - 3*p1.z );
 
+    
     console.log("ang x: " +    this.torpAng.x );  
     console.log("ang y: " +    this.torpAng.y );
     console.log("ang z: " +    this.torpAng.z );   
 
-    if (Math.abs(this.nextPoint.y - this.targetList[this.currTarget].y) < 0.5)
-        console.log("bateu");
+    //if (Math.abs(this.nextPoint.y - this.targetList[this.currTarget].y) < 0.5)
+  //      console.log("bateu");
     
     console.log("next x: " +  this.nextPoint.x);  
     console.log("next y: " + this.nextPoint.y);
     console.log("next z: " +  this.nextPoint.z);    
     console.log("t: " + t);
+    console.log("time: " + this.time);
  };
 
 MySubmarine.prototype.goLeft = function() {
@@ -173,23 +177,25 @@ MySubmarine.prototype.periDown = function() {
 };
 
 MySubmarine.prototype.fireTorpedo = function() {
-    if (this.currTarget <= this.targetList.length-1){
+    if (this.currTarget <= this.targetList.length-1 && this.torpedo == null){
+
+        //Q(t) = (1-t)^3 *P1 + 3t*(1-t)^2 *P2 + 3*t^2(1-t)*P3 + t^3 * P4
         
         this.elapsedTime = 0;
 
-        this.torpedo = new MyTorpedo(this.scene,  this.x , this.y,  this.z,  this.angleUpDown,  this.angleFrwBck);
-        //Q(t) = (1-t)^3 *P1 + 3t*(1-t)^2 *P2 + 3*t^2(1-t)*P3 + t^3 * P4
-       
+        this.torpedo = new MyTorpedo(this.scene,  this.x , this.y-2,  this.z,  this.angleUpDown,  this.angleFrwBck);
+      
 
         //P1 ,P2, P3 and P4 for the curve
         this.p1 = {x: this.torpedo.x, y: this.torpedo.y, z: this.torpedo.z};
       
-        this.p2 = {x:this.torpedo.x + Math.cos(this.angleUpDown)*6, y:this.torpedo.y, z:this.torpedo.z + Math.sin(this.angleUpDown)*6};
+        this.p2 = {x:this.torpedo.x + Math.cos(this.angleLeftRight)*6, y:this.torpedo.y, z:this.torpedo.z + Math.sin(this.angleLeftRight)*6};
         
         this.p3 = {x:this.targetList[this.currTarget].x, y:this.targetList[this.currTarget].y + 3,z: this.targetList[this.currTarget].z};
       
         this.p4 = {x:this.targetList[this.currTarget].x, y:this.targetList[this.currTarget].y,z:this.targetList[this.currTarget].z};
 
+        
         this.time = Math.sqrt( Math.pow(this.p1.x +this.p4.x,2) + Math.pow(this.p1.y+this.p4.y,2) + Math.pow(this.p1.z+this.p4.z,2)); 
 
      }

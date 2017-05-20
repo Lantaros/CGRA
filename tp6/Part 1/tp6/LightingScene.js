@@ -28,7 +28,7 @@ LightingScene.prototype.init = function(application) {
  	this.trap = new MyTrapezoid(this);
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
-
+    this.torpedo = new MyTorpedo(this,  0, 0, 0,  0,0);
     
 
 	// Materials
@@ -206,10 +206,10 @@ LightingScene.prototype.display = function() {
 
 	//Torpedo
 	
-	/*this.pushMatrix();
-		this.submarineAppearances[this.currSubmarineAppearance].apply();
-		this.submarine.display();
-	this.popMatrix();*/
+	this.pushMatrix();
+		//this.translate(0,0,-0.5);
+		this.torpedo.display();
+	this.popMatrix();
 
 	// ---- END Primitive drawing section
 
