@@ -13,8 +13,8 @@
  
 
  MyTarget.prototype.display = function() {
-   this.scene.pushMatrix();
+  this.scene.pushMatrix();
     this.scene.translate(this.x,this.y,this.z);
     this.tar.display();
-   this.scene.popMatrix();
+  this.scene.popMatrix();
 };

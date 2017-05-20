@@ -24,11 +24,9 @@ function MySubmarine(scene) {
     this.MAX_SPEED = 3;
 
  	//Targets
-    this.target1 = new MyTarget(this.scene,2,0,2);
-    this.target2 = new MyTarget(this.scene,-1,-5,-5);
     this.targetList = new Array();    
-    this.targetList.push(this.target1);
-    this.targetList.push(this.target2);
+    this.targetList.push(new MyTarget(this.scene,2,0,2));
+    this.targetList.push(new MyTarget(this.scene,-1,-5,-5));
 
     //Torpedo
     this.torpedo = null;
@@ -63,13 +61,10 @@ MySubmarine.prototype.display = function() {
             this.torpedo.display();
       this.scene.popMatrix();
   }
-    this.scene.pushMatrix();
-        this.target1.display();
-    this.scene.popMatrix();
 
-    this.scene.pushMatrix();
-        this.target2.display();
-    this.scene.popMatrix();
+    for(let i = 0; i < this.targetList.length; i++)
+        this.targetList[i].display();
+
 };
 
 MySubmarine.prototype.update = function(delta) {
@@ -195,9 +190,9 @@ MySubmarine.prototype.fireTorpedo = function() {
         this.p4 = {x:this.targetList[this.currTarget].x, y:this.targetList[this.currTarget].y,z:this.targetList[this.currTarget].z};
 
         
-        this.time = Math.sqrt( Math.pow(this.p1.x +this.p4.x,2) + Math.pow(this.p1.y+this.p4.y,2) + Math.pow(this.p1.z+this.p4.z,2)); 
+        this.time = Math.sqrt( Math.pow(this.p1.x - this.p4.x,2) + Math.pow(this.p1.y-this.p4.y,2) + Math.pow(this.p1.z-this.p4.z,2)); 
 
      }
     else
-        console.log("Hawe");
+        console.log("There are no more Torpedos left!");
 };

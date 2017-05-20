@@ -204,12 +204,12 @@ LightingScene.prototype.display = function() {
 		this.submarine.display();
 	this.popMatrix();
 
-	//Torpedo
+// 	//Torpedo
 	
-	this.pushMatrix();
-		//this.translate(0,0,-0.5);
-		this.torpedo.display();
-	this.popMatrix();
+// 	this.pushMatrix();
+// 		//this.translate(0,0,-0.5);
+// 		this.torpedo.display();
+// 	this.popMatrix();
 
 	// ---- END Primitive drawing section
 
