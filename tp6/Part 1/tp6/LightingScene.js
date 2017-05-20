@@ -70,7 +70,7 @@ LightingScene.prototype.init = function(application) {
     this.light3=true;
     this.light4=true;    
     this.valid = true;
-    this.speed = this.submarine.speed;
+    this.speed = this.submarine.speed;//??? DELETE
 	this.lastTime = 5000;
     this.submarineAppearances = new Array();    
     this.currSubmarineAppearance = 0;
@@ -79,8 +79,7 @@ LightingScene.prototype.init = function(application) {
     this.rotFinUp = false;
     this.rotFinDown = false;
 
-	//push all sub textures to submarineAppearances
-
+	//Push all sub textures to submarineAppearances
    this.submarineAppearances.push(this.texture1);
    this.submarineAppearances.push(this.texture2);
    this.submarineAppearances.push(this.texture3);
