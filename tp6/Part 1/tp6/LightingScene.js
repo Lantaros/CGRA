@@ -180,7 +180,7 @@ LightingScene.prototype.display = function() {
 		this.rotate(-90 * degToRad, 1, 0, 0);
 		this.scale(15, 15, 0.2);
 		this.floorAppearance.apply();
-		this.floor.display();
+		//this.floor.display();
 	this.popMatrix();
 	
 	// Post

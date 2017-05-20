@@ -40,7 +40,7 @@ function MySubmarine(scene) {
     this.p2 = {x:0,y:0,z:0};
     this.p3 = {x:0,y:0,z:0};  
     this.p4 = {x:0,y:0,z:0};
-    this.elapsedTime =0;
+    this.elapsedTime;
     this.t = 0;
 };
 
@@ -77,12 +77,18 @@ MySubmarine.prototype.update = function(delta) {
     this.subShape.update(this.speed, delta);
     this.angleUpDown += (delta/1000) * this.angleUpDownDelta * Math.abs(this.speed);
    
-    if (this.torpedo != null){ 
-       
+    if (this.torpedo != null){        
          this.elapsedTime +=delta/1000;
          if (this.elapsedTime < this.time){
            this.t += delta/1000 * (1/this.time);
            this.updateTorpedoPos(this.t,this.p1,this.p2,this.p3,this.p4);
+         }
+         else{
+             console.log("acabou");
+             this.elapsedTime = 0;
+             this.currTarget++;
+             this.t = 0;
+             this.torpedo = null;
          }
     }
 };
@@ -101,7 +107,7 @@ MySubmarine.prototype.updateTorpedoPos = function(t,p1,p2,p3,p4) {
     this.nextPoint.z = Math.pow(1-t,3) * p1.z + 3*t*Math.pow(1-t,2) * p2.z + 3*Math.pow(t,2)*(1-t)* p3.z + Math.pow(t,3)* p4.z;
  
     //Q'(t) = (3 P4 - 9 P3 + 9 P2 - 3 P1) t^2  + (6 P3 - 12 P2 + 6 P1) t + 3 P2 - 3 P1
-    
+
     this.torpAng.x = Math.atan( (3*p4.x - 9*p3.x + 9*p2.x - 3*p1.x)*Math.pow(t,2) + (6*p3.x - 12*p2.x + 6*p1.x)*t + 3*p2.x - 3*p1.x);
     this.torpAng.y = Math.atan( (3*p4.y - 9*p3.y + 9*p2.y - 3*p1.y)*Math.pow(t,2) + (6*p3.y - 12*p2.y + 6*p1.y)*t + 3*p2.y - 3*p1.y);
     this.torpAng.z = Math.atan( (3*p4.z - 9*p3.z + 9*p2.z - 3*p1.z)*Math.pow(t,2) + (6*p3.z - 12*p2.z + 6*p1.z)*t + 3*p2.z - 3*p1.z);
@@ -109,9 +115,9 @@ MySubmarine.prototype.updateTorpedoPos = function(t,p1,p2,p3,p4) {
 
     console.log("ang x: " +    this.torpAng.x );  
     console.log("ang y: " +    this.torpAng.y );
-    console.log("ang z: " +    this.torpAng.z );    
+    console.log("ang z: " +    this.torpAng.z );   
 
-    if (Math.abs(this.nextPoint.y - this.targetList[this.currTarget].y) < 0.01)
+    if (Math.abs(this.nextPoint.y - this.targetList[this.currTarget].y) < 0.5)
         console.log("bateu");
     
     console.log("next x: " +  this.nextPoint.x);  
@@ -169,7 +175,9 @@ MySubmarine.prototype.periDown = function() {
 MySubmarine.prototype.fireTorpedo = function() {
     if (this.currTarget <= this.targetList.length-1){
         
-        this.torpedo = new MyTorpedo(this.scene,  this.x , this.y-2,  this.z,  this.angleUpDown,  this.angleFrwBck);
+        this.elapsedTime = 0;
+
+        this.torpedo = new MyTorpedo(this.scene,  this.x , this.y,  this.z,  this.angleUpDown,  this.angleFrwBck);
         //Q(t) = (1-t)^3 *P1 + 3t*(1-t)^2 *P2 + 3*t^2(1-t)*P3 + t^3 * P4
        
 
@@ -184,9 +192,7 @@ MySubmarine.prototype.fireTorpedo = function() {
 
         this.time = Math.sqrt( Math.pow(this.p1.x +this.p4.x,2) + Math.pow(this.p1.y+this.p4.y,2) + Math.pow(this.p1.z+this.p4.z,2)); 
 
-        this.currTarget++;
-
-    }
+     }
     else
         console.log("Hawe");
 };
