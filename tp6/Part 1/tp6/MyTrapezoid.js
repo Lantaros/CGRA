@@ -32,9 +32,8 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.indices.push(0, 3, 1)
     
     //Right Triangle  (z++) Z = 0.1
-    this.vertices.push(0.5, 0, 0.1);
-    this.indices.push(3, 4, 1);
-    this.texCoords.push(1, 0);
+    this.vertices.push(0.5, 0, 0.1);//4
+    this.texCoords.push(1, 1);
 
      for(let i = 0; i < 5; i++)
         this.normals.push(0, 0, 1);
@@ -147,6 +146,32 @@ MyTrapezoid.prototype.initBuffers = function() {
     this.texCoords.push(1, 1);
     this.texCoords.push(0, 1);
     this.texCoords.push(0, 0);
+
+
+//---------------------------------------
+    //Left Triangle extra fix (z++) Z = 0.1
+    this.vertices.push(0, 0, 0.1); //28
+    this.vertices.push(0, 0.25, 0.1); //29
+    this.normals.push(0, 0, 1);
+    this.normals.push(0, 0, 1);
+    
+    this.indices.push(28, 29, 10);
+    this.texCoords.push(1, 1);
+    this.texCoords.push(1, 0);
+
+
+    //Right Triangle extra fix (z++) Z = 0.1
+    this.vertices.push(0.3, 0.25, 0.1);//30
+    this.vertices.push(0.3, 0, 0.1);//31
+    this.texCoords.push(0, 0);
+    this.texCoords.push(0, 1);
+
+    this.indices.push(30, 31, 4);
+    
+    for(let i = 0; i < 2; i++)
+        this.normals.push(0, 0, 1);
+
+ /*---------------------------------------*/
 
     this.primitiveType=this.scene.gl.TRIANGLES;
 	this.initGLBuffers();
