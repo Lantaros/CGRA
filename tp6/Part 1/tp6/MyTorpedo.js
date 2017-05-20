@@ -22,10 +22,8 @@
  };
 
  MyTorpedo.prototype.display = function() {
-   //Body
-   this.scene.pushMatrix();
-    this.scene.translate(this.x-01,this.y-2.7,this.z-8.8);
-  
+ 
+  //Body
   this.scene.pushMatrix();
     this.scene.scale(0.2 ,0.2, 1);
     this.bodyCylinder.display();
@@ -66,5 +64,4 @@
     this.backFinVert.display();
   this.scene.popMatrix();
 
-    this.scene.popMatrix();
 };

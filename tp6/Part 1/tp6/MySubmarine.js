@@ -97,7 +97,8 @@ MySubmarine.prototype.updateTorpedoPos = function(t,p1,p2,p3,p4) {
    
     this.nextPoint.z = Math.pow(1-t,3) * p1.z + 3*t*Math.pow(1-t,2) * p2.z + 3*Math.pow(t,2)*(1-t)* p3.z + Math.pow(t,3)* p4.z;
 
-
+    if (Math.abs(this.nextPoint.y - this.targetList[this.currTarget].y) < 0.01)
+        console.log("bateu");
     
     console.log("next x: " +  this.nextPoint.x);  
     console.log("next y: " + this.nextPoint.y);
@@ -168,7 +169,6 @@ MySubmarine.prototype.fireTorpedo = function() {
 
         this.time = Math.sqrt( Math.pow(this.p1.x +this.p4.x,2) + Math.pow(this.p1.y+this.p4.y,2) + Math.pow(this.p1.z+this.p4.z,2)); 
 
-      
         this.currTarget++;
     }
     else
