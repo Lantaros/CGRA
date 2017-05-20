@@ -17,7 +17,7 @@
      this.frontSphr = new MyLamp(scene, 40, 4);
      this.backSphr = this.frontSphr;
      this.backFinHor = new MyTrapezoid(scene);
-     this.backFinVert = new MyTrapezoid(scene);
+     this.backFinVert = this.backFinHor;
  };
 
  MyTorpedo.prototype.display = function() {

@@ -52,15 +52,14 @@ MySubmarine.prototype.display = function() {
         this.subShape.display();
     this.scene.popMatrix();    
 
- if (this.torpedo != null){
+     if (this.torpedo != null){
          this.scene.pushMatrix();
             this.scene.translate(this.nextPoint.x,this.nextPoint.y,this.nextPoint.z);
-           // this.scene.rotate( this.torpAng.z,0,0,1);
-         //  this.scene.rotate( this.torpAng.x,1,0,0);
-         //  this.scene.rotate( this.torpAng.y,0,1,0);
-        //     this.scene.rotate(Math.PI/6, this.torpAng.x, this.torpAng.y, this.torpAng.z);
-         //   this.scene.rotate(Math.PI, 1,0,0);
-         this.scene.rotate(this.torpedoAng, this.torpAng.x, this.torpAng.y, this.torpAng.z);
+            this.scene.rotate( this.torpAng.z,0,0,1);
+            this.scene.rotate( this.torpAng.y,0,1,0);
+            this.scene.rotate( this.torpAng.x,1,0,0);
+            this.scene.rotate(Math.PI, 1,0,0);
+    //     this.scene.rotate(this.torpedoAng, this.torpAng.x, this.torpAng.y, this.torpAng.z);
             this.torpedo.display();
       this.scene.popMatrix();
   }
