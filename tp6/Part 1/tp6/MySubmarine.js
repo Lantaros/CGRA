@@ -59,19 +59,13 @@ MySubmarine.prototype.display = function() {
         this.subShape.display();
     this.scene.popMatrix();    
 
-     //torpedo movement
+     //Torpedo movement
      if (this.torpedo != null){
          this.scene.pushMatrix();
             this.scene.translate(this.nextPoint.x,this.nextPoint.y,this.nextPoint.z);
-/*             this.scene.rotate( this.torpAng.z,0,0,1);
+           this.scene.rotate( this.torpAng.z,0,0,1);
              this.scene.rotate( this.torpAng.y,0,1,0);
-             this.scene.rotate( this.torpAng.x,1,0,0);
-            //this.scene.rotate(Math.PI, 1,0,0);
-            this.torpedo.display();
-      this.scene.popMatrix();
-  }
-*/
-            this.scene.rotate(this.torpedoAng, this.torpAng.x, this.torpAng.y, this.torpAng.z);
+             this.scene.rotate( this.torpAng.x,1,0,0);          
             this.torpedo.display();
       this.scene.popMatrix();
     }
@@ -144,9 +138,9 @@ MySubmarine.prototype.updateTorpedoPos = function(t,p1,p2,p3,p4) {
  };
 
  MySubmarine.prototype.fireTorpedo = function() {
-     console.log("F pressed");
+     
     if (this.currTarget < this.targetList.length && this.torpedo == null){
-        console.log("Disparou");
+
         //Q(t) = (1-t)^3 *P1 + 3t*(1-t)^2 *P2 + 3*t^2(1-t)*P3 + t^3 * P4
         
         this.elapsedTime = 0;
