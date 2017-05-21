@@ -54,7 +54,12 @@ LightingScene.prototype.init = function(application) {
 	this.postAppearance.loadTexture("../resources/images/HexagonalGrid.png");
 	//this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
+	this.cageAppearance = new CGFappearance(this);
+	this.cageAppearance.loadTexture("../resources/images/cage.png");
 	
+	this.fishAppearance = new CGFappearance(this);
+	this.fishAppearance.loadTexture("../resources/images/fish.jpg");
+
 	this.texture1 =  new CGFappearance(this);
 	this.texture1.loadTexture("../resources/images/metal.png");
    	this.texture1.setTextureWrap('REPEAT', 'REPEAT');
@@ -62,7 +67,7 @@ LightingScene.prototype.init = function(application) {
    	this.texture2 = this.postAppearance;
 
 	this.texture3 = new CGFappearance(this);
-	this.texture3.loadTexture("../resources/images/WrinkledPlastic.jpg")
+	this.texture3.loadTexture("../resources/images/WrinkledPlastic.jpg");
    
     //For submarine
     this.light1=true; 
@@ -206,19 +211,6 @@ LightingScene.prototype.display = function() {
 		this.submarine.display();
 	this.popMatrix();
 
-	//Torpedo
-	
-	this.pushMatrix();
-		//this.translate(0,0,-0.5);
-		//this.torpedo.display();
-	this.popMatrix();
-
-	//fish
-
-	this.pushMatrix();
-		//this.translate(0,0,-0.5);
-		//this.fish.display();
-	this.popMatrix();
 
 	// ---- END Primitive drawing section
 

@@ -17,4 +17,5 @@
       this.scene.translate(this.x,this.y,this.z);
       this.tar.display();
    this.scene.popMatrix();
+
 };
