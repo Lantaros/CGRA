@@ -32,7 +32,6 @@ MyInterface.prototype.init = function(application) {
 	lights.add(this.scene, 'light3').name('Light 3');
 	lights.add(this.scene, 'light4').name('Light 4');
 
-
 	this.gui.add(this.scene, 'currSubmarineAppearance', { "Texture1":0, "Texture2":1, "Texture3":2 } ).name("Textures");
 	
 	// add a slider

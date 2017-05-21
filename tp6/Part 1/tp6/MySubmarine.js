@@ -24,11 +24,16 @@ function MySubmarine(scene) {
     this.MAX_SPEED = 3;
 
  	//Targets
-    this.target1 = new MyTarget(this.scene,2,0,2);
-    this.target2 = new MyTarget(this.scene,-1,-5,-5);
+    this.target1 = new MyTargetCage(this.scene,2,0,2);
+    this.fish = null;
+    this.fish2 = null;
+    this.target2 = new MyTargetCage(this.scene,-1,-5,-5);
     this.targetList = new Array();    
     this.targetList.push(this.target1);
     this.targetList.push(this.target2);
+    this.fishes = new Array();
+    this.fishes.push(this.fish);
+    this.fishes.push(this.fish2);
 
     //Torpedo
     this.torpedo = null;
@@ -42,6 +47,7 @@ function MySubmarine(scene) {
     this.p4 = {x:0,y:0,z:0};
     this.elapsedTime;
     this.t = 0;
+    
 };
 
 MySubmarine.prototype.display = function() {
@@ -55,22 +61,27 @@ MySubmarine.prototype.display = function() {
  if (this.torpedo != null){
          this.scene.pushMatrix();
             this.scene.translate(this.nextPoint.x,this.nextPoint.y,this.nextPoint.z);
-           // this.scene.rotate( this.torpAng.z,0,0,1);
-         //  this.scene.rotate( this.torpAng.x,1,0,0);
-         //  this.scene.rotate( this.torpAng.y,0,1,0);
-        //     this.scene.rotate(Math.PI/6, this.torpAng.x, this.torpAng.y, this.torpAng.z);
-         //   this.scene.rotate(Math.PI, 1,0,0);
-         this.scene.rotate(this.torpedoAng, this.torpAng.x, this.torpAng.y, this.torpAng.z);
+
+            this.scene.rotate(this.torpedoAng, this.torpAng.x, this.torpAng.y, this.torpAng.z);
             this.torpedo.display();
       this.scene.popMatrix();
   }
-    this.scene.pushMatrix();
-        this.target1.display();
-    this.scene.popMatrix();
+    for (var i = 0; i < this.targetList.length; i++)
+         if (this.targetList[i] != null){
+            this.scene.pushMatrix();
+                 this.scene.displayAppearance.apply();
+                 this.targetList[i].display();
+             this.scene.popMatrix();
+          }
+          else
+          {
+             this.scene.pushMatrix();
+               //  this.scene.displayAppearance.apply();
+                 this.scene.translate(this.fishes[i].x,this.fishes[i].y,this.fishes[i].z);
+                 this.fishes[i].display();
+             this.scene.popMatrix();
+          }     
 
-    this.scene.pushMatrix();
-        this.target2.display();
-    this.scene.popMatrix();
 };
 
 MySubmarine.prototype.update = function(delta) {
@@ -87,10 +98,19 @@ MySubmarine.prototype.update = function(delta) {
          else{
              console.log("acabou");
              this.elapsedTime = 0;
-             this.currTarget++;
              this.t = 0;
              this.torpedo = null;
+             this.fishes[this.currTarget] = new MyFishGroup(this.scene, this.targetList[this.currTarget].x, this.targetList[this.currTarget].y, this.targetList[this.currTarget].z);
+             this.targetList[this.currTarget] = null;
+             this.currTarget++;
+
          }
+    }
+
+    for (var i = 0; i < this.fishes.length;i++){
+        if (this.fishes[i] != null)
+                this.fishes[i].update(delta);
+            
     }
 };
 

@@ -22,9 +22,10 @@ serialInclude([
 	'MyLamp.js',
 	'MyPropeller.js',
 	'MyCylinderClosed.js',
-	'MyTarget.js',
+	'MyTargetCage.js',
 	'MyTorpedo.js',
-
+	'MyFish.js',
+	'MyFishGroup.js',
 	main=function() {
 		var app = new CGFapplication(document.body);
 		var myScene = new LightingScene();

@@ -29,8 +29,8 @@ LightingScene.prototype.init = function(application) {
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
     this.torpedo = new MyTorpedo(this,  0, 0, 0,  0,0);
-    
-
+    this.fish = new MyFish(this,0,0,0);
+	
 	// Materials
 	this.materialDefault = new CGFappearance(this);	
 	this.materialTable = new CGFappearance(this);
@@ -78,6 +78,8 @@ LightingScene.prototype.init = function(application) {
     this.rotFinRight = false;
     this.rotFinUp = false;
     this.rotFinDown = false;
+
+    this.nTargets = 3;
 
 	//Push all sub textures to submarineAppearances
    this.submarineAppearances.push(this.texture1);
@@ -208,7 +210,14 @@ LightingScene.prototype.display = function() {
 	
 	this.pushMatrix();
 		//this.translate(0,0,-0.5);
-		this.torpedo.display();
+		//this.torpedo.display();
+	this.popMatrix();
+
+	//fish
+
+	this.pushMatrix();
+		//this.translate(0,0,-0.5);
+		//this.fish.display();
 	this.popMatrix();
 
 	// ---- END Primitive drawing section
