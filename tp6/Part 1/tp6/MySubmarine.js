@@ -25,13 +25,12 @@ function MySubmarine(scene) {
     this.MAX_SPEED = 3;
 
  	//Targets
-    this.target1 = new MyTargetCage(this.scene,2,0,2);
+    this.target1 = 
     this.fish = null;
     this.fish2 = null;
-    this.target2 = new MyTargetCage(this.scene,-1,-5,-5);
     this.targetList = new Array();    
-    this.targetList.push(this.target1);
-    this.targetList.push(this.target2);
+    this.targetList.push(new MyTargetCage(this.scene,2,0,2));
+    this.targetList.push(new MyTargetCage(this.scene,-1,-5,-5));
     this.fishes = new Array();
     this.fishes.push(this.fish);
     this.fishes.push(this.fish2);
@@ -47,8 +46,8 @@ function MySubmarine(scene) {
     this.p3 = {x:0,y:0,z:0};  
     this.p4 = {x:0,y:0,z:0};
     this.elapsedTime;
-    this.t = 0;
     
+    this.explosion = null;
 };
 
 MySubmarine.prototype.display = function() {
@@ -80,10 +79,8 @@ MySubmarine.prototype.display = function() {
     //Display cages and fishes
     for (var i = 0; i < this.targetList.length; i++){
          if (this.targetList[i] != null){
-            this.scene.pushMatrix();
                  this.scene.cageAppearance.apply();
                  this.targetList[i].display();
-             this.scene.popMatrix();
           }
           else{
              this.scene.pushMatrix();
@@ -99,14 +96,17 @@ MySubmarine.prototype.update = function(delta) {
     this.updatePos(delta);
     this.subShape.update(this.speed, delta);
     this.angleUpDown += (delta/1000) * this.angleUpDownDelta * Math.abs(this.speed);
-   
+    console.log("ElapsedTime " + this.elapsedTime);
     if (this.torpedo != null) {        
          this.elapsedTime +=delta/1000;
          if (this.elapsedTime < this.time){
            this.t += delta/1000 * (1/this.time);
            this.updateTorpedoPos(this.t,this.p1,this.p2,this.p3,this.p4);
          }
+         //Explosion
          else {
+             this.explosion = new MyExplosion(this.scene, this.targetList[this.currTarget].x, this.targetList[this.currTarget].y, this.targetList[this.currTarget].z);
+            
              this.elapsedTime = 0;
              this.t = 0;
              this.torpedo = null;
@@ -115,7 +115,7 @@ MySubmarine.prototype.update = function(delta) {
              this.currTarget++;
          }
     }
-    //update fishes movement
+    //Update fishes movement
     for (var i = 0; i < this.fishes.length;i++)
         if (this.fishes[i] != null)
              this.fishes[i].update(delta);            
@@ -144,8 +144,9 @@ MySubmarine.prototype.updateTorpedoPos = function(t,p1,p2,p3,p4) {
  };
 
  MySubmarine.prototype.fireTorpedo = function() {
-    if (this.currTarget <= this.targetList.length-1 && this.torpedo == null){
-
+     console.log("F pressed");
+    if (this.currTarget < this.targetList.length && this.torpedo == null){
+        console.log("Disparou");
         //Q(t) = (1-t)^3 *P1 + 3t*(1-t)^2 *P2 + 3*t^2(1-t)*P3 + t^3 * P4
         
         this.elapsedTime = 0;
@@ -218,10 +219,10 @@ MySubmarine.prototype.periDown = function() {
 
 MySubmarine.prototype.fireTorpedo = function() {
     if (this.currTarget < this.targetList.length && this.torpedo == null){
-
         //Q(t) = (1-t)^3 *P1 + 3t*(1-t)^2 *P2 + 3*t^2(1-t)*P3 + t^3 * P4
         
         this.elapsedTime = 0;
+        this.t = 0;
 
         this.torpedo = new MyTorpedo(this.scene,  this.x , this.y-2,  this.z - 4.08/2,  this.angleUpDown,  this.angleFrwBck);
       
@@ -234,6 +235,9 @@ MySubmarine.prototype.fireTorpedo = function() {
         this.p3 = {x:this.targetList[this.currTarget].x, y:this.targetList[this.currTarget].y + 3,z: this.targetList[this.currTarget].z};
       
         this.p4 = {x:this.targetList[this.currTarget].x, y:this.targetList[this.currTarget].y,z:this.targetList[this.currTarget].z};
+	    
+	    this.time = Math.sqrt( Math.pow(this.p1.x - this.p4.x,2) + Math.pow(this.p1.y-this.p4.y,2) + Math.pow(this.p1.z-this.p4.z,2));
+
 	}
 };
 

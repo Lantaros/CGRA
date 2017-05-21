@@ -28,7 +28,6 @@ LightingScene.prototype.init = function(application) {
  	this.trap = new MyTrapezoid(this);
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
-
 	
 	// Materials
 	this.materialDefault = new CGFappearance(this);	
@@ -227,6 +226,8 @@ LightingScene.prototype.update = function(currTime, valid) {
    
    	//Update submarine
 	this.submarine.update(delta);
+
+	//this.explosion.update(delta);
 	
 };
 
