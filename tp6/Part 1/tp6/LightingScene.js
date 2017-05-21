@@ -28,8 +28,8 @@ LightingScene.prototype.init = function(application) {
  	this.trap = new MyTrapezoid(this);
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
-    
 
+	
 	// Materials
 	this.materialDefault = new CGFappearance(this);	
 	this.materialTable = new CGFappearance(this);
@@ -53,9 +53,14 @@ LightingScene.prototype.init = function(application) {
 	this.postAppearance.loadTexture("../resources/images/HexagonalGrid.png");
 	//this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
-	this.targetAppearance = new CGFappearance(this);
-	//this.targetAppearance.loadTexture("../resources/images/torpedo.jpg");
+
+	this.cageAppearance = new CGFappearance(this);
+	this.cageAppearance.loadTexture("../resources/images/cage.png");
+
 	
+	this.fishAppearance = new CGFappearance(this);
+	this.fishAppearance.loadTexture("../resources/images/fish.jpg");
+
 	this.texture1 =  new CGFappearance(this);
 	this.texture1.loadTexture("../resources/images/metal.png");
    	this.texture1.setTextureWrap('REPEAT', 'REPEAT');
@@ -63,7 +68,7 @@ LightingScene.prototype.init = function(application) {
    	this.texture2 = this.postAppearance;
 
 	this.texture3 = new CGFappearance(this);
-	this.texture3.loadTexture("../resources/images/WrinkledPlastic.jpg")
+	this.texture3.loadTexture("../resources/images/WrinkledPlastic.jpg");
    
     //For submarine
     this.light1=true; 
@@ -79,6 +84,8 @@ LightingScene.prototype.init = function(application) {
     this.rotFinRight = false;
     this.rotFinUp = false;
     this.rotFinDown = false;
+
+    this.nTargets = 3;
 
 	//Push all sub textures to submarineAppearances
    this.submarineAppearances.push(this.texture1);
