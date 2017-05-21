@@ -28,6 +28,10 @@ LightingScene.prototype.init = function(application) {
  	this.trap = new MyTrapezoid(this);
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
+
+ 	//Bubble
+ 	this.bubbleLower = new MyBubbleHalf(this, 40, 100);
+ 	this.bubbleUpper = this.bubbleLower;
 	
 	// Materials
 	this.materialDefault = new CGFappearance(this);	
@@ -41,7 +45,7 @@ LightingScene.prototype.init = function(application) {
 	this.enableTextures(true);
 
 	this.floorAppearance = new CGFappearance(this);
-	this.floorAppearance.loadTexture("../resources/images/ocean.png");
+	this.floorAppearance.loadTexture("../resources/images/ocean.jpg");
 	//this.floorAppearance.setTextureWrap('CLAMP_TO_EDGE','CLAMP_TO_EDGE');
 
     this.displayAppearance = new CGFappearance(this);
@@ -187,7 +191,19 @@ LightingScene.prototype.display = function() {
 		this.rotate(-90 * degToRad, 1, 0, 0);
 		this.scale(15, 15, 0.2);
 		this.floorAppearance.apply();
-		//this.floor.display();
+		this.floor.display();
+ 	this.popMatrix();
+	//Bubble
+	this.floorAppearance.apply();
+	//this.bubbleLower.display();
+	this.pushMatrix();	
+	this.rotate(Math.PI/2, 1, 0, 0);
+	this.scale(-100, -100, -100);
+	this.pushMatrix();	
+		this.rotate(Math.PI, 1, 0, 0);
+		this.bubbleLower.display();
+	this.popMatrix();
+	this.bubbleLower.display();
 	this.popMatrix();
 	
 	// Post

@@ -90,7 +90,7 @@ MySubmarine.prototype.update = function(delta) {
     this.updatePos(delta);
     this.subShape.update(this.speed, delta);
     this.angleUpDown += (delta/1000) * this.angleUpDownDelta * Math.abs(this.speed);
-    console.log("ElapsedTime " + this.elapsedTime);
+
     if (this.torpedo != null) {        
          this.elapsedTime +=delta/1000;
          if (this.elapsedTime < this.time){

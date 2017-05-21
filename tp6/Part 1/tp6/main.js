@@ -27,6 +27,7 @@ serialInclude([
 	'MyFish.js',
 	'MyFishGroup.js',
 	'MyExplosion.js',
+	'MyBubbleHalf.js',
 	
 	main=function() {
 		var app = new CGFapplication(document.body);
