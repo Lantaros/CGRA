@@ -10,10 +10,9 @@
  	this.z = z;
     this.angleUpDown = angleUpDown;
     this.angleLeftRight = angleLeftRight;
-    this.targ;
 
-    //shape    
-     this.bodyCylinder = new MyCylinderClosed(scene, 40, 4);
+    //Shape    
+     this.bodyCylinder = new MyCylinder(scene, 40, 4);
      this.frontSphr = new MyLamp(scene, 40, 4);
      this.backSphr = this.frontSphr;
      this.backFinHor = new MyTrapezoid(scene);
@@ -23,7 +22,7 @@
  MyTorpedo.prototype.display = function() {
  
  this.scene.pushMatrix();
-  this.scene.rotate(Math.PI/2,1,0,0);
+  this.scene.rotate(Math.PI,1,0,0);
   this.scene.translate(0,0,-0.5);
 
   //Body

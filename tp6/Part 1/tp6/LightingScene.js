@@ -28,7 +28,6 @@ LightingScene.prototype.init = function(application) {
  	this.trap = new MyTrapezoid(this);
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
-    this.torpedo = new MyTorpedo(this,  0, 0, 0,  0,0);
     
 
 	// Materials
@@ -54,6 +53,8 @@ LightingScene.prototype.init = function(application) {
 	this.postAppearance.loadTexture("../resources/images/HexagonalGrid.png");
 	//this.displayAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
+	this.targetAppearance = new CGFappearance(this);
+	//this.targetAppearance.loadTexture("../resources/images/torpedo.jpg");
 	
 	this.texture1 =  new CGFappearance(this);
 	this.texture1.loadTexture("../resources/images/metal.png");
@@ -203,13 +204,6 @@ LightingScene.prototype.display = function() {
 		this.submarineAppearances[this.currSubmarineAppearance].apply();
 		this.submarine.display();
 	this.popMatrix();
-
-// 	//Torpedo
-	
-// 	this.pushMatrix();
-// 		//this.translate(0,0,-0.5);
-// 		this.torpedo.display();
-// 	this.popMatrix();
 
 	// ---- END Primitive drawing section
 
