@@ -29,7 +29,9 @@ LightingScene.prototype.init = function(application) {
  	this.lamp = new MyLamp(this, 40, 10);
  	this.submarine = new MySubmarine(this);
     this.torpedo = new MyTorpedo(this,  0, 0, 0,  0,0);
-    this.fish = new MyFish(this,0,0,0);
+    this.fish = new MyFish(this,0,0,0)
+    this.explosion = new MyExplosion(this,0, 0,0);
+
 	
 	// Materials
 	this.materialDefault = new CGFappearance(this);	
@@ -211,6 +213,11 @@ LightingScene.prototype.display = function() {
 		this.submarine.display();
 	this.popMatrix();
 
+	this.pushMatrix();
+	//	this.submarineAppearances[this.currSubmarineAppearance].apply();
+		this.explosion.display();
+	this.popMatrix();
+
 
 	// ---- END Primitive drawing section
 
@@ -227,6 +234,8 @@ LightingScene.prototype.update = function(currTime, valid) {
    
    	//Update submarine
 	this.submarine.update(delta);
+
+	this.explosion.update(delta);
 	
 };
 

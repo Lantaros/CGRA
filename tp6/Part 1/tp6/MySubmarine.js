@@ -48,6 +48,7 @@ function MySubmarine(scene) {
     this.elapsedTime;
     this.t = 0;
     
+    this.explosion = null;
 };
 
 MySubmarine.prototype.display = function() {
@@ -97,13 +98,18 @@ MySubmarine.prototype.update = function(delta) {
            this.t += delta/1000 * (1/this.time);
            this.updateTorpedoPos(this.t,this.p1,this.p2,this.p3,this.p4);
          }
+         //explosion
          else {
+             this.explosion = new MyExplosion(this.scene, this.targetList[this.currTarget].x, this.targetList[this.currTarget].y, this.targetList[this.currTarget].z);
+            
              this.elapsedTime = 0;
              this.t = 0;
              this.torpedo = null;
              this.fishes[this.currTarget] = new MyFishGroup(this.scene, this.targetList[this.currTarget].x, this.targetList[this.currTarget].y, this.targetList[this.currTarget].z);
              this.targetList[this.currTarget] = null;
              this.currTarget++;
+
+            //actual explosion
          }
     }
     //update fishes movement

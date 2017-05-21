@@ -26,6 +26,8 @@ serialInclude([
 	'MyTorpedo.js',
 	'MyFish.js',
 	'MyFishGroup.js',
+	'MyExplosion.js',
+	
 	main=function() {
 		var app = new CGFapplication(document.body);
 		var myScene = new LightingScene();
